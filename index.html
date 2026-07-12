@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>네이버 여행 · 크로스셀 현황과 성장 계획</title>
+<link rel="stylesheet" type="text/css" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" />
+<style>
+  /* =========================================================
+     네이버 여행 — 항공-호텔 크로스셀 현황 & 성장 계획
+     정의: 여행 일정 매칭(A안) · 기간: ~26.06 · 데이터: Superset (26.07.10 추출)
+     구성: MRT 2023 IR Deck p.7–11 준용 · KPI: VERTBIZ 위키
+     ========================================================= */
+  :root {
+    --bg:#000; --line:rgba(255,255,255,0.5);
+    --mint:#D4E7D0; --lav:#ABA2D6; --olive:#C2B91C; --coral:#FE5A36; --cream:#E9E8DF;
+    --ink:#181818; --ink-2:#4a4a44;
+    --onlight-track:rgba(0,0,0,0.12);
+    --d-text:#ECECEC; --d-mute:#8E8E8E; --d-faint:#5E5E5E; --d-line:rgba(255,255,255,0.10);
+    --sage:#A6CBA0; --grey:#7A7A78; --naver:#03C75A; --blue:#5B6BB0;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body {
+    font-family:'NanumSquare Neo','NanumSquareNeo',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg); color:var(--d-text); line-height:1.4;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .tnum { font-variant-numeric:tabular-nums; }
+  .wrap { max-width:1320px; margin:0 auto; padding:26px 26px 90px; }
+
+  .box { border:1px solid var(--line); border-radius:0; padding:26px; position:relative; min-width:0; }
+  .box.mint {background:var(--mint);color:var(--ink);}
+  .box.dark {background:#111;color:var(--d-text);}
+  .blabel { display:inline-block; border:1px solid currentColor; border-radius:999px; padding:6px 16px; font-size:13px; font-weight:800; letter-spacing:-0.01em; }
+  .box.dark .blabel { border-color:rgba(255,255,255,0.55); }
+
+  /* TOP BAR */
+  .topbar { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:16px; }
+  .brand-logo { font-size:32px; font-weight:900; letter-spacing:-0.04em; color:#fff; line-height:1; margin-bottom:18px; display:inline-flex; align-items:center; gap:11px; }
+  .brand-logo .dot { width:13px; height:13px; border-radius:50%; background:var(--naver); }
+  .page-title { font-size:20px; font-weight:900; letter-spacing:-0.03em; color:#fff; line-height:1; }
+  .page-sub { font-size:13px; font-weight:700; color:var(--d-mute); margin-top:8px; }
+  .pills { display:flex; gap:9px; flex-wrap:wrap; justify-content:flex-end; }
+  .pill { border:1px solid var(--line); border-radius:999px; padding:9px 18px; font-size:13px; font-weight:800; color:#fff; white-space:nowrap; }
+  .pill.hl { background:var(--coral); color:var(--ink); border-color:var(--coral); }
+
+  .grid { display:grid; gap:14px; min-width:0; }
+
+  /* HERO */
+  .hero { display:grid; grid-template-columns:1.05fr 1fr; column-gap:34px; row-gap:20px; align-items:center; }
+  .hero .h-left { display:flex; flex-direction:column; gap:18px; }
+  .h-left > .blabel { align-self:flex-start; }
+  .giant { font-size:clamp(40px,6.4vw,80px); font-weight:900; letter-spacing:-0.04em; line-height:0.9; }
+  .giant .arw { color:var(--ink-2); margin:0 0.1em; }
+  .giant .tg { color:var(--coral); }
+  .giant .u { font-size:0.5em; }
+  .giant-cap { font-size:15px; font-weight:800; color:var(--ink-2); margin-top:14px; }
+  .giant-cap b { color:var(--ink); }
+  .substat { display:flex; gap:26px; flex-wrap:wrap; padding-top:14px; border-top:2px solid rgba(0,0,0,0.18); }
+  .substat .s { display:flex; flex-direction:column; gap:2px; }
+  .substat .s .sk { font-size:11px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-2); }
+  .substat .s .sv { font-size:22px; font-weight:900; letter-spacing:-0.02em; }
+  .substat .s .sv .pos { color:var(--coral); }
+  .cbars { display:flex; flex-direction:column; gap:12px; }
+  .cbars .ct { font-size:12px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-2); margin-bottom:2px; }
+  .cb .cl { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px; }
+  .cb .ck { font-size:13px; font-weight:800; color:var(--ink-2); }
+  .cb.me .ck { color:var(--ink); font-weight:900; }
+  .cb .cv { font-size:16px; font-weight:900; color:var(--ink-2); }
+  .cb.me .cv { color:var(--coral); font-size:19px; }
+  .cb .ctrack { height:11px; background:var(--onlight-track); overflow:hidden; }
+  .cb .ctrack > i { display:block; height:100%; background:rgba(0,0,0,0.3); }
+  .cb.me .ctrack > i { background:var(--coral); }
+
+  /* SUMMARY KPI */
+  .kpis { grid-template-columns:repeat(2,1fr); }
+  .kpi { display:flex; flex-direction:column; gap:8px; border:1px solid var(--d-line); padding:26px; }
+  .kpi.now { border-color:rgba(254,90,54,0.6); background:rgba(254,90,54,0.05); }
+  .kpi .kk { font-size:12px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--d-mute); }
+  .kpi.now .kk { color:var(--coral); }
+  .kpi .kv { font-size:42px; font-weight:900; letter-spacing:-0.04em; color:#fff; line-height:0.9; }
+  .kpi .kv small { font-size:0.4em; }
+  .kpi .kg { font-size:16px; font-weight:900; color:var(--sage); }
+  .kpi .kg small { font-size:11px; font-weight:800; color:var(--d-mute); margin-right:6px; }
+  .kpi .kd { font-size:12.5px; font-weight:700; color:var(--d-mute); line-height:1.5; }
+
+  /* SECTION TITLE */
+  .sec-title { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:22px; flex-wrap:wrap; }
+  .sec-title h2 { font-size:24px; font-weight:900; letter-spacing:-0.03em; color:#fff; }
+  .sec-title .st-sub { font-size:13px; font-weight:700; color:var(--d-mute); margin-top:4px; max-width:840px; line-height:1.5; }
+  .sec-tag { font-size:12px; font-weight:800; letter-spacing:0.06em; color:var(--d-faint); text-transform:uppercase; white-space:nowrap; }
+
+  /* COMPARE (국내 vs 해외) */
+  .cmpg { display:grid; grid-template-columns:repeat(2,1fr); gap:26px; }
+  .cmp-metric .cm-k { font-size:12px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--d-mute); margin-bottom:14px; }
+  .cmp-bar { margin-bottom:12px; }
+  .cmp-bar .cbl { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px; font-size:12.5px; font-weight:900; color:#fff; }
+  .cmp-bar .cbt { height:16px; background:rgba(255,255,255,0.07); overflow:hidden; }
+  .cmp-bar .cbt > i { display:block; height:100%; background:var(--grey); }
+  .cmp-bar.dom .cbt > i { background:#6BA8E8; }
+  .cmp-bar.ov .cbt > i { background:var(--coral); }
+  .insight { margin-top:24px; padding:16px 18px; border:1px solid var(--d-line); background:rgba(254,90,54,0.06); }
+  .insight .in-t { font-size:12px; font-weight:900; color:var(--coral); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:8px; }
+  .insight ul { list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .insight li { font-size:13px; font-weight:700; color:var(--d-mute); line-height:1.5; padding-left:16px; position:relative; }
+  .insight li::before { content:''; position:absolute; left:0; top:8px; width:5px; height:5px; background:var(--coral); border-radius:50%; }
+  .insight li b { color:var(--d-text); font-weight:900; }
+
+  /* COUNTRY TABLE */
+  table { width:100%; border-collapse:collapse; }
+  thead th { text-align:left; font-size:11px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:var(--d-mute); padding:0 14px 12px; border-bottom:2px solid var(--d-line); white-space:nowrap; }
+  thead th.num { text-align:right; }
+  tbody td { padding:12px 14px; border-bottom:1px solid var(--d-line); vertical-align:middle; }
+  tbody tr:last-child td { border-bottom:0; }
+  tbody tr:hover { background:rgba(255,255,255,0.03); }
+  td.cty { font-weight:900; font-size:15px; color:#fff; white-space:nowrap; }
+  td.cty small { display:block; font-size:11px; font-weight:700; color:var(--d-faint); margin-top:2px; }
+  td.ratebar { width:42%; }
+  .rb { display:flex; align-items:center; gap:12px; }
+  .rb .rbt { flex:1; height:14px; background:rgba(255,255,255,0.07); overflow:hidden; }
+  .rb .rbt > i { display:block; height:100%; background:var(--coral); }
+  .rb .rbv { flex-shrink:0; width:64px; text-align:right; font-weight:900; font-size:15px; color:#fff; }
+  td.num { text-align:right; font-weight:900; font-size:15px; color:var(--sage); white-space:nowrap; }
+  .tbl-note { font-size:11.5px; font-weight:700; color:var(--d-faint); margin-top:12px; line-height:1.5; }
+
+  /* TREND (SVG combo) */
+  .trend svg { width:100%; height:auto; display:block; }
+  .trend-legend { display:flex; gap:20px; font-size:11.5px; font-weight:700; color:var(--d-mute); margin-top:14px; flex-wrap:wrap; }
+  .trend-legend .sw { display:inline-block; width:12px; height:12px; margin-right:7px; vertical-align:-1px; }
+  .trend-legend .ln { display:inline-block; width:16px; height:0; border-top:3px solid; margin-right:7px; vertical-align:4px; }
+  .tnote { margin-top:16px; padding-top:14px; border-top:1px solid var(--d-line); font-size:12.5px; font-weight:700; color:var(--d-mute); line-height:1.6; }
+  .tnote b { color:var(--d-text); }
+  .dual { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .dual .dt { font-size:14px; font-weight:900; color:#fff; margin-bottom:12px; display:inline-flex; align-items:center; gap:8px; }
+  .dual .dt .dtag { font-size:11px; font-weight:800; color:var(--d-faint); }
+
+  /* FLYWHEEL */
+  .flow { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .flow-step { border:1px solid var(--d-line); padding:20px; display:flex; flex-direction:column; gap:10px; }
+  .flow-no { width:28px; height:28px; border-radius:50%; background:var(--coral); color:var(--ink); font-weight:900; display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .flow-t { font-size:15px; font-weight:900; color:#fff; letter-spacing:-0.02em; line-height:1.3; }
+  .flow-d { font-size:12.5px; font-weight:700; color:var(--d-mute); line-height:1.55; }
+  .flow-tag { margin-top:auto; font-size:12.5px; font-weight:900; color:var(--coral); }
+  .ampc { margin-top:22px; padding-top:20px; border-top:1px solid var(--d-line); }
+  .ampc-cap { font-size:12px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--d-mute); margin-bottom:14px; }
+  .mb { margin-bottom:12px; }
+  .mb .ml { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; font-size:13px; font-weight:800; color:var(--d-mute); }
+  .mb.me .ml { color:#fff; font-weight:900; }
+  .mb .mtrack { height:18px; background:rgba(255,255,255,0.07); overflow:hidden; }
+  .mb .mtrack > i { display:block; height:100%; background:var(--grey); }
+  .mb.me .mtrack > i { background:var(--coral); }
+  .ampc-note { font-size:12px; font-weight:700; color:var(--d-mute); }
+  .ampc-note b { color:var(--d-text); }
+
+  /* APPROACH (인사이트) */
+  .narr { display:flex; flex-direction:column; gap:18px; }
+  .narr .n-item { display:flex; gap:16px; padding-bottom:18px; border-bottom:1px solid var(--d-line); }
+  .narr .n-item:last-child { border-bottom:0; padding-bottom:0; }
+  .narr .n-no { flex-shrink:0; font-size:13px; font-weight:900; color:var(--coral); border:1px solid var(--coral); border-radius:999px; width:30px; height:30px; display:flex; align-items:center; justify-content:center; }
+  .narr .n-t { font-size:16.5px; font-weight:900; color:#fff; letter-spacing:-0.02em; margin-bottom:6px; }
+  .narr .n-t .n-tag { font-size:11px; font-weight:800; color:var(--coral); margin-left:10px; letter-spacing:0.02em; }
+  .narr .n-d { font-size:13.5px; font-weight:700; color:var(--d-mute); line-height:1.65; }
+  .narr .n-d b { color:var(--d-text); font-weight:900; }
+  .narr-note { margin-top:16px; font-size:11.5px; font-weight:700; color:var(--d-faint); line-height:1.5; }
+
+  /* PLAN */
+  .kpi-callout { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+  .kc { border:1px solid var(--d-line); padding:12px 18px; flex:1; min-width:220px; }
+  .kc .kc-k { font-size:11px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--d-mute); }
+  .kc .kc-v { font-size:22px; font-weight:900; letter-spacing:-0.02em; color:#fff; margin-top:4px; }
+  .kc .kc-v .pos { color:var(--coral); }
+  .kc .kc-v small { font-size:0.55em; color:var(--d-mute); font-weight:800; }
+  .plan-group { border:1px solid var(--d-line); margin-bottom:12px; }
+  .plan-head { display:flex; align-items:baseline; gap:14px; padding:14px 18px; background:rgba(255,255,255,0.04); border-bottom:1px solid var(--d-line); flex-wrap:wrap; }
+  .plan-head .pg-dir { font-size:16px; font-weight:900; color:#fff; letter-spacing:-0.02em; }
+  .plan-head .pg-sub { font-size:12px; font-weight:700; color:var(--d-mute); }
+  .plan-row { display:grid; grid-template-columns:24px 1.5fr 1.2fr 1.3fr auto; gap:16px; padding:13px 18px; border-bottom:1px solid var(--d-line); align-items:center; }
+  .plan-row:last-child { border-bottom:0; }
+  .pr-no { color:var(--d-faint); font-weight:900; font-size:13px; }
+  .pr-task { font-size:13.5px; font-weight:800; color:var(--d-text); line-height:1.4; }
+  .pr-task b { color:#fff; }
+  .pr-meta { font-size:12px; font-weight:700; color:var(--d-mute); line-height:1.45; }
+  .pr-kpi { font-size:12px; font-weight:800; color:var(--sage); line-height:1.45; }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .chip { font-size:10.5px; font-weight:900; padding:3px 10px; border-radius:999px; white-space:nowrap; }
+  .chip.hi { background:var(--coral); color:var(--ink); }
+  .chip.mid { background:var(--blue); color:#fff; }
+  .chip.lo { background:var(--grey); color:#fff; }
+  .chip.on { background:var(--naver); color:var(--ink); }
+  .chip.plan { background:var(--blue); color:#fff; }
+  .plan-legend { font-size:11.5px; font-weight:700; color:var(--d-faint); margin-top:8px; }
+
+  footer { margin-top:40px; padding-top:22px; border-top:2px solid var(--d-line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; color:var(--d-faint); font-size:12px; font-weight:700; }
+
+  @media (max-width:960px){
+    .hero { grid-template-columns:1fr; gap:24px; }
+    .flow { grid-template-columns:1fr 1fr; }
+    .kpis, .cmpg, .dual { grid-template-columns:1fr; gap:20px; }
+    .plan-row { grid-template-columns:1fr; gap:6px; }
+    .chips { justify-content:flex-start; }
+    .page-title { font-size:18px; }
+  }
+  @media (max-width:600px){
+    .wrap { padding:14px 14px 60px; } .box { padding:18px; } .grid { gap:12px; }
+    .brand-logo { font-size:25px; }
+    .giant { font-size:clamp(34px,8vw,52px); }
+    .sec-title h2 { font-size:19px; }
+    .flow { grid-template-columns:1fr; }
+    .overflow-x { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .overflow-x table { min-width:560px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div>
+      <div class="brand-logo"><span class="dot"></span>NAVER 여행</div>
+      <div class="page-title">항공-호텔 크로스셀 현황과 성장 계획</div>
+      <div class="page-sub">Flight × Hotel Cross-sell — 26.6월 현황 · 여행 일정 매칭 기준 · 26년 KPI</div>
+    </div>
+    <div class="pills">
+      <span class="pill hl">CROSS-SELL</span>
+      <span class="pill">~ 26.06</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1) HERO : KPI (유지) -->
+    <section class="box mint hero">
+      <div class="h-left">
+        <span class="blabel">연간 크로스셀 호텔 거래액</span>
+        <div>
+          <div class="giant tnum">913<span class="u">억</span><span class="arw">→</span><span class="tg">1,500<span class="u">억</span></span></div>
+          <div class="giant-cap">25년 <b>913억</b> → 26년 목표 <b>1,500억</b> · <b>+64% 성장</b> (메인 KPI)</div>
+        </div>
+        <div class="substat">
+          <div class="s"><span class="sk">26년 1~6월 누적</span><span class="sv tnum">712.1억</span></div>
+          <div class="s"><span class="sk">목표 달성률</span><span class="sv tnum"><span class="pos">47.5%</span></span></div>
+          <div class="s"><span class="sk">전체 호텔 內 비중</span><span class="sv tnum">6%</span></div>
+        </div>
+      </div>
+      <div class="cbars">
+        <div class="ct">26년 목표 달성 현황 — 크로스셀 호텔 거래액</div>
+        <div class="cb me"><div class="cl"><span class="ck">상반기 누적 712.1억 / 목표 1,500억</span><span class="cv tnum">47.5%</span></div><div class="ctrack"><i style="width:47.5%"></i></div></div>
+        <div class="ct" style="margin-top:8px">크로스셀 예약 비율 — 현재(26.1월 · 동시예약 집계) vs 26년 목표</div>
+        <div class="cb"><div class="cl"><span class="ck">국내 현재 (26.1)</span><span class="cv tnum">5.8%</span></div><div class="ctrack"><i style="width:58%"></i></div></div>
+        <div class="cb me"><div class="cl"><span class="ck">국내 목표</span><span class="cv tnum">7%↑</span></div><div class="ctrack"><i style="width:70%"></i></div></div>
+        <div class="cb"><div class="cl"><span class="ck">해외 현재 (26.1)</span><span class="cv tnum">8.8%</span></div><div class="ctrack"><i style="width:88%"></i></div></div>
+        <div class="cb me"><div class="cl"><span class="ck">해외 목표</span><span class="cv tnum">10%↑</span></div><div class="ctrack"><i style="width:100%"></i></div></div>
+        <div style="font-size:10.5px; font-weight:700; color:var(--ink-2); margin-top:2px; line-height:1.5;">* 국내 5.8%·해외 8.8%는 26년 1월 기준 월별 동시예약 집계(보고 KPI 기준) · 누적 712.1억과 달성률은 일정 매칭 기준 집계</div>
+      </div>
+    </section>
+
+    <!-- 2) 크로스셀 현황 요약 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>크로스셀 현황 요약</h2><div class="st-sub"><b style="color:var(--d-text)">여행 일정 매칭</b> 기준 (동일 여행에서 호텔 예약한 경우만 인정) · 25년 평균 vs 26년 상반기 평균</div></div><span class="sec-tag">Summary</span></div>
+      <div class="grid kpis">
+        <div class="kpi"><span class="kk">25년 월평균</span><span class="kv tnum">8.52<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 107.8억</span><span class="kd">연간 크로스셀 호텔 거래액 1,293억 (일정 매칭 기준)</span></div>
+        <div class="kpi now"><span class="kk">26년 1~6월 월평균</span><span class="kv tnum">8.26<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 118.7억</span><span class="kd">상반기 크로스셀 호텔 거래액 712.1억 · 전년 월평균 대비 +10%</span></div>
+      </div>
+      <div class="tnote">⚠ 26.4~6월 코호트는 여행일이 아직 도래하지 않은 구매자가 많아 <b>비율이 실제보다 낮게 집계</b>될 수 있음 (호텔 추가 예약 진행 중). 성숙 코호트(25년) 기준 연중 8.0~9.2%.</div>
+    </section>
+
+    <!-- 3) 국내 vs 해외 크로스셀 현황 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>국내 · 해외 크로스셀 현황</h2><div class="st-sub">항공 노선 기준(국내선/국제선) 크로스셀 비율 · 크로스셀 호텔 거래액 (26년 1~6월 평균)</div></div><span class="sec-tag">26.01–06 평균 · Domestic &amp; Overseas</span></div>
+      <div class="cmpg">
+        <div class="cmp-metric">
+          <div class="cm-k">크로스셀 비율 (상반기 합산 기준)</div>
+          <div class="cmp-bar dom"><div class="cbl"><span>국내 (58,620 / 814,301명)</span><span class="tnum">7.20%</span></div><div class="cbt"><i style="width:75.3%"></i></div></div>
+          <div class="cmp-bar ov"><div class="cbl"><span>해외 (67,767 / 709,023명)</span><span class="tnum">9.56%</span></div><div class="cbt"><i style="width:100%"></i></div></div>
+        </div>
+        <div class="cmp-metric">
+          <div class="cm-k">크로스셀 호텔 거래액 (월평균)</div>
+          <div class="cmp-bar dom"><div class="cbl"><span>국내 (월평균 12,822건)</span><span class="tnum">31.2억</span></div><div class="cbt"><i style="width:35.1%"></i></div></div>
+          <div class="cmp-bar ov"><div class="cbl"><span>해외 (월평균 15,176건)</span><span class="tnum">88.8억</span></div><div class="cbt"><i style="width:100%"></i></div></div>
+        </div>
+      </div>
+      <div class="trend-legend" style="margin-top:2px">
+        <span><span class="sw" style="background:#6BA8E8"></span>국내</span>
+        <span><span class="sw" style="background:var(--coral)"></span>해외</span>
+      </div>
+      <div class="insight">
+        <div class="in-t">Insight (26년 1~6월 · 일정 매칭 기준)</div>
+        <ul>
+          <li>해외 크로스셀 비율(9.56%)이 국내(7.20%) 대비 <b>약 1.3배</b> → 해외 여행자의 <b>항공-호텔 결합 니즈가 강함</b></li>
+          <li>크로스셀 호텔 거래액은 월평균 해외 88.8억 vs 국내 31.2억으로 <b>해외가 약 2.8배</b> → 해외가 매출 기여의 핵심</li>
+          <li>객단가(거래액÷유저수)도 해외 79만원 vs 국내 32만원으로 <b>약 2.5배</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4) 해외 국가별 크로스셀 현황 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>해외 국가별 크로스셀 현황</h2><div class="st-sub">항공권 도착 국가(1구간) 기준 크로스셀 비율 · 크로스셀 호텔 거래액 (26년 1~6월 평균 · 항공 구매자수 상위 7개국 + 제주 참고)</div></div><span class="sec-tag">26.01–06 평균 · By Country</span></div>
+      <div class="overflow-x"><table>
+        <thead><tr><th>국가</th><th>크로스셀 비율</th><th class="num">크로스셀 호텔 거래액 (월평균)</th></tr></thead>
+        <tbody>
+          <tr style="background:rgba(3,199,90,0.08); border-left:3px solid var(--naver)"><td class="cty" style="color:var(--naver)">*참고 · 제주 (국내)<small>항공 구매 584,987명 · 크로스셀 46,249명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:66.4%; background:var(--naver)"></i></div><span class="rbv tnum" style="color:var(--naver)">7.91%</span></div></td><td class="num tnum" style="color:var(--naver)">23.8억</td></tr>
+          <tr><td class="cty">일본<small>항공 구매 337,358명 · 크로스셀 34,754명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:86.4%"></i></div><span class="rbv tnum">10.30%</span></div></td><td class="num tnum">40.3억</td></tr>
+          <tr><td class="cty">베트남<small>항공 구매 84,732명 · 크로스셀 10,099명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:100%"></i></div><span class="rbv tnum">11.92%</span></div></td><td class="num tnum">12.6억</td></tr>
+          <tr><td class="cty">중국<small>항공 구매 65,539명 · 크로스셀 3,472명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:44.5%"></i></div><span class="rbv tnum">5.30%</span></div></td><td class="num tnum">3.6억</td></tr>
+          <tr><td class="cty">필리핀<small>항공 구매 33,472명 · 크로스셀 2,404명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:60.2%"></i></div><span class="rbv tnum">7.18%</span></div></td><td class="num tnum">3.1억</td></tr>
+          <tr><td class="cty">태국<small>항공 구매 29,055명 · 크로스셀 2,583명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:74.6%"></i></div><span class="rbv tnum">8.89%</span></div></td><td class="num tnum">3.2억</td></tr>
+          <tr><td class="cty">대만<small>항공 구매 22,706명 · 크로스셀 2,145명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:79.3%"></i></div><span class="rbv tnum">9.45%</span></div></td><td class="num tnum">2.2억</td></tr>
+          <tr><td class="cty">미국<small>항공 구매 16,004명 · 크로스셀 1,157명</small></td><td class="ratebar"><div class="rb"><div class="rbt"><i style="width:60.7%"></i></div><span class="rbv tnum">7.23%</span></div></td><td class="num tnum">3.4억</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tbl-note">· 구매자·크로스셀 인원은 26년 1~6월 합산, 거래액은 월평균 · 비율 = 상반기 합산 기준 · 항공 도착 국가 기준이며 호텔 국가는 무관 (일정 매칭만 적용) · 도착 국가가 대한민국으로 잡히는 국제선 구간은 목적지 분류에서 제외 · *제주 = 국내선 中 제주(CJU) 도착 기준 참고 지표</div>
+      <div class="insight" style="margin-top:16px">
+        <div class="in-t">Insight (26년 1~6월)</div>
+        <ul>
+          <li><b>일본</b>이 모수(33.7만명)·거래액(월 40.3억) 모두 압도적 1위 → 파일럿(일본 추천 페이지)에 이어 <b>확장 1순위 시장</b></li>
+          <li>비율 1위는 <b>베트남(11.9%)</b> · 일본(10.3%)도 두 자릿수 → 도시·휴양 <b>자유여행지가 결합 니즈 강함</b></li>
+          <li><b>중국(5.3%)</b>은 모수 대비 비율 최저 → 출장·현지숙소 비중이 높은 시장으로 추정 · <b>제주(7.9%)</b>는 국내 평균(7.2%)을 상회하는 국내 핵심 지역</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5) 크로스셀 추이 (월별) -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>크로스셀 추이</h2><div class="st-sub">월별 크로스셀 예약수 · 크로스셀 비율(%) · 크로스셀 호텔 거래액 (25.01 ~ 26.06 · 여행 일정 매칭)</div></div><span class="sec-tag">Monthly Trend</span></div>
+      <div class="dual">
+        <div>
+          <div class="dt">크로스셀 예약수 &amp; 비율 <span class="dtag">Bookings &amp; Rate</span></div>
+          <div class="trend" id="t-xsrate"></div>
+        </div>
+        <div>
+          <div class="dt">크로스셀 호텔 거래액 <span class="dtag">Hotel GMV (억)</span></div>
+          <div class="trend" id="t-xsgmv"></div>
+        </div>
+      </div>
+      <div class="trend-legend">
+        <span><span class="sw" style="background:#5B6BB0"></span>크로스셀 예약수(건)</span>
+        <span><span class="ln" style="border-color:#FE5A36"></span>크로스셀 비율(%)</span>
+        <span><span class="sw" style="background:#8E5AA8"></span>크로스셀 호텔 거래액(억)</span>
+      </div>
+      <div class="insight" style="margin-top:20px">
+        <div class="in-t">측정 기준 — 여행 일정 매칭 (실제 같은 여행만 인정)</div>
+        <ul>
+          <li><b>분모</b> = 해당 월 항공권 구매자(취소 제외) 고유 nidno · <b>분자</b> = 그 중 일정 매칭 조건으로 호텔 예약(OK·KRW)한 nidno</li>
+          <li><b>왕복(RT)</b>: 호텔 체크인 ≥ 항공 출발일, 체크아웃 ≤ 귀환일+3일 · <b>편도/다구간</b>: 체크아웃 ∈ [출발일, 출발일+30일] · 호텔 지역 무관</li>
+          <li>25년 연중 <b>8.0~9.2%</b> 안정 · 최고 26.01(9.27% · 150억) · 25년 연간 크로스셀 호텔 거래액 <b>1,293억</b> (일정 매칭 기준)</li>
+          <li>26.4~6월은 <b>미성숙 코호트</b>(여행 미도래)로 수치가 향후 상향 갱신됨 · 단순 '구매 이후 예약'(검증 없음)은 24%대로 부풀지만 <b>일정 매칭 8%대가 정확한 베이스라인</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6) 크로스셀 vs 전체 호텔 — 추이 비교 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>크로스셀 vs 전체 호텔 거래액 — 추이 비교</h2><div class="st-sub">"크로스셀 추이가 전체 호텔 거래액 추이와 같이 가는가?" — 지수화(25.01=100) 비교와 전체 호텔 內 크로스셀 비중으로 확인</div></div><span class="sec-tag">Co-movement</span></div>
+      <div class="dual">
+        <div>
+          <div class="dt">추이 비교 — 지수화 <span class="dtag">25.01 = 100</span></div>
+          <div class="trend" id="t-cmp"></div>
+        </div>
+        <div>
+          <div class="dt">전체 호텔 거래액 內 크로스셀 비중 <span class="dtag">XS GMV ÷ Total GMV</span></div>
+          <div class="trend" id="t-share"></div>
+        </div>
+      </div>
+      <div class="trend-legend">
+        <span><span class="sw" style="background:#2E9E4F"></span>전체 호텔 거래액 (지수)</span>
+        <span><span class="ln" style="border-color:#FE5A36"></span>크로스셀 호텔 거래액 (지수)</span>
+        <span><span class="sw" style="background:#FE5A36"></span>크로스셀 비중(%)</span>
+      </div>
+      <div class="insight" style="margin-top:20px">
+        <div class="in-t">"같이 가는가?" — 답</div>
+        <ul>
+          <li><b>방향(계절성)은 동행</b> — 성수기 피크(25.07 · 26.01 · 26.06)가 두 지표에서 함께 나타남 (상관계수 r ≈ 0.5, 성숙 구간 기준 0.55)</li>
+          <li><b>기울기는 크로스셀이 더 가파름</b> — 26.03 기준 전체 호텔 지수 99 vs 크로스셀 지수 159. 전체 호텔이 횡보하는 동안 크로스셀은 우상향</li>
+          <li>그 결과 <b>비중이 14.6%(25.01) → 23.3%(26.03)로 상승 추세</b> · 26.4~6월 하락은 미성숙 코호트(여행 미도래) 영향으로 향후 상향 갱신</li>
+          <li>결론: 크로스셀은 전체 호텔의 계절성을 따르되 <b>그 안에서 점유율을 키우는 중</b> — 절대 규모상 아직 호텔 매출의 Driver는 아니나, 성장률은 전체를 상회</li>
+        </ul>
+      </div>
+      <div class="dt" style="margin-top:26px">참고 — 전체 호텔 거래액·예약수 <span class="dtag">24.03 ~ 26.06 · 취소 제외</span></div>
+      <div class="trend" id="t-total"></div>
+      <div class="trend-legend">
+        <span><span class="sw" style="background:#2E9E4F"></span>거래액(억)</span>
+        <span><span class="ln" style="border-color:#6BA8E8"></span>예약수(만)</span>
+      </div>
+      <div class="tnote">25년 연간 호텔 거래액 <b>8,228억</b>(취소 제외) · 이 중 크로스셀 호텔 거래액 <b>1,293억(약 15.7%)</b> — 일정 매칭 기준. 위키 보고치(13,245억·913억·6%)는 <b>취소 포함·동시예약 기준</b>이라 수치가 다름. 거래액 최고치는 <b>25.07(880억)</b>, 26.06은 855억으로 역대 2위 수준.</div>
+    </section>
+
+    <!-- 7) 크로스셀 고객 객단가 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>크로스셀 고객 객단가</h2><div class="st-sub">크로스셀 호텔 거래액 ÷ 크로스셀 유저수 · 국내 vs 해외 (26년 1~6월)</div></div><span class="sec-tag">26.01–06 · Per Customer</span></div>
+      <div class="mb me"><div class="ml"><span>해외 크로스셀 고객</span><span class="tnum">79만원</span></div><div class="mtrack"><i style="width:100%"></i></div></div>
+      <div class="mb me"><div class="ml"><span>국내 크로스셀 고객</span><span class="tnum">32만원</span></div><div class="mtrack"><i style="width:40.5%; background:#6BA8E8"></i></div></div>
+      <div class="ampc-note">해외 크로스셀 고객의 객단가가 국내 대비 <b>약 2.5배</b> 높아, 매출 기여도가 큼</div>
+    </section>
+
+    <!-- 8) Insight — 접근 방향 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>Insight — 크로스셀, 어떻게 접근할 것인가</h2><div class="st-sub">위 현황·추이 데이터에서 도출한 우리 팀의 크로스셀 접근 방향 4가지</div></div><span class="sec-tag">Our Approach</span></div>
+      <div class="narr">
+        <div class="n-item"><div class="n-no">1</div><div class="n-body">
+          <div class="n-t">해외 먼저, 일본부터<span class="n-tag">WHERE</span></div>
+          <div class="n-d">비율(9.56% vs 7.20%)·객단가(79만 vs 32만, <b>2.5배</b>)·거래액(월 88.8억 vs 31.2억) 모두 해외가 우위 — 같은 전환 1건이라도 해외가 훨씬 크다. 그중 <b>일본이 모수 33.7만 명·월 40.3억으로 압도적</b>이므로 리소스는 해외, 특히 일본에 우선 배분하고, 결합 니즈가 가장 강한 <b>베트남(11.9%)</b> 등 휴양지로 확장한다. 중국(5.3%)처럼 비율이 낮은 시장은 후순위.</div>
+        </div></div>
+        <div class="n-item"><div class="n-no">2</div><div class="n-body">
+          <div class="n-t">국내는 제주에 집중<span class="n-tag">FOCUS</span></div>
+          <div class="n-d">국내 크로스셀 유저의 <b>79%(46,249/58,620명)</b>, 거래액의 <b>76%(월 23.8억/31.2억)</b>가 제주에서 나온다 — 국내 크로스셀은 사실상 제주 싸움. 국내 전역으로 흩뿌리기보다 <b>제주 항공권 구매자 대상 숙소 연계 특화</b>(제주 추천·제주패스)로 효율을 극대화한다.</div>
+        </div></div>
+        <div class="n-item"><div class="n-no">3</div><div class="n-body">
+          <div class="n-t">골든타임 — 항공 구매 후 30일 안에 개입<span class="n-tag">WHEN</span></div>
+          <div class="n-d">크로스셀의 <b>약 84%가 항공권 구매 후 30일 이내</b>에 발생하고, 당일에만 약 30%가 일어난다.* 개입 시점이 명확한 만큼 <b>예약완료 직후 접점</b>이 효율이 가장 높다 — 현재 운영 중인 <b>Braze 팝업 추천·100원 적립 이벤트</b>가 정확히 이 골든타임을 겨냥한 장치이며, 이 구간의 접점을 계속 두텁게 한다.</div>
+        </div></div>
+        <div class="n-item"><div class="n-no">4</div><div class="n-body">
+          <div class="n-t">지금이 밀어붙일 타이밍<span class="n-tag">WHY NOW</span></div>
+          <div class="n-d">크로스셀은 전체 호텔의 계절성을 따르면서도 성장률이 이를 상회해 <b>비중이 14.6% → 23.3%로 상승 추세</b>다. 그럼에도 항공권 구매자의 <b>약 92%는 여전히 미전환</b> — 검증된 성장 레버에 기회 모수가 크게 남아 있다. 목표 달성률 47.5%에서 하반기 성수기(여름·추석)와 실행 과제 효과를 얹으면 <b>1,500억 달성 사정권</b>.</div>
+        </div></div>
+      </div>
+      <div class="narr-note">* 골든타임 분석: 25년 3월 항공권 구매자 코호트 기준 (D+0 29.3% · ~D+30 누적 83.8%), 「항공권 구매자 대상 호텔 검색 포인트 프로모션 기획안」 위키</div>
+    </section>
+
+    <!-- 9) 26년 실행 계획 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>26년 실행 계획</h2><div class="st-sub">현재 진행 중인 상시 프로그램과 예정 과제</div></div><span class="sec-tag">2026 Roadmap</span></div>
+      <div class="kpi-callout">
+        <div class="kc"><div class="kc-k">메인 KPI · 연간 크로스셀 호텔 거래액</div><div class="kc-v tnum"><span class="pos">1,500억</span> <small>(25년 913억 대비 +64%)</small></div></div>
+        <div class="kc"><div class="kc-k">보조 KPI · 크로스셀 비율</div><div class="kc-v tnum">국내 <span class="pos">7%↑</span> · 해외 <span class="pos">10%↑</span></div></div>
+      </div>
+
+      <div class="plan-group">
+        <div class="plan-head"><span class="pg-dir">현재 진행 중</span><span class="pg-sub">상시 운영</span></div>
+        <div class="plan-row"><span class="pr-no">1</span><span class="pr-task"><b>[일본 호텔 추천]</b> 일본 항공권 구매자에게 일본 인기 호텔 리스트 추천</span><span class="pr-meta">이벤트 페이지 · 일본 항공권 구매자</span><span class="pr-kpi">Braze 팝업으로 유입</span><span class="chips"><span class="chip on">운영중</span></span></div>
+        <div class="plan-row"><span class="pr-no">2</span><span class="pr-task"><b>[제주 호텔 추천]</b> 제주 항공권 구매자에게 제주 인기 호텔 리스트 추천</span><span class="pr-meta">이벤트 페이지 · 제주 항공권 구매자</span><span class="pr-kpi">Braze 팝업으로 유입</span><span class="chips"><span class="chip on">운영중</span></span></div>
+        <div class="plan-row"><span class="pr-no">3</span><span class="pr-task"><b>[가격비교 100원 적립]</b> 항공권 구매자가 호텔 3곳 가격비교 시 100원 적립 (출석체크형)</span><span class="pr-meta">호텔 가격비교 · 항공권 구매자</span><span class="pr-kpi">26.7.9 시작</span><span class="chips"><span class="chip on">운영중</span></span></div>
+      </div>
+
+      <div class="plan-group">
+        <div class="plan-head"><span class="pg-dir">예정</span><span class="pg-sub">기획 중</span></div>
+        <div class="plan-row"><span class="pr-no">4</span><span class="pr-task"><b>[시크릿 호텔]</b> 항공권 구매자 대상 폐쇄형 시크릿 호텔 페이지</span><span class="pr-meta">시크릿 페이지 · 항공권 구매자</span><span class="pr-kpi">폐쇄형 특가로 전환율 제고</span><span class="chips"><span class="chip plan">기획중</span></span></div>
+        <div class="plan-row"><span class="pr-no">5</span><span class="pr-task"><b>[일본패스 · 제주패스]</b> 일본/제주 항공 구매자 대상 호텔 구매 시 추가 적립 + 골드등급 체험 + 매달 추첨 1명 100만원 지급</span><span class="pr-meta">패스 프로그램 · 일본/제주 항공권 구매자</span><span class="pr-kpi">핵심 시장(일본·제주) 집중 공략</span><span class="chips"><span class="chip plan">기획중</span></span></div>
+      </div>
+      <div class="plan-legend">상태: <span class="chip on" style="padding:1px 8px">운영중</span> <span class="chip plan" style="padding:1px 8px">기획중</span></div>
+    </section>
+
+  </div>
+
+  <footer>
+    <span>NAVER 여행 · 항공-호텔 크로스셀 현황과 성장 계획</span>
+    <span>데이터: Superset 집계 (26.07.10 추출 · 일정 매칭 기준) · KPI: VERTBIZ 위키 · 구성 MRT IR Deck p.7–11 준용</span>
+  </footer>
+</div>
+
+<script>
+  /* ===== 데이터 (Superset · 26.07.10 추출 · 여행 일정 매칭 기준) ===== */
+  // 크로스셀 월별 (25.01 ~ 26.06)
+  const XS_M    = ['25.01','25.02','25.03','25.04','25.05','25.06','25.07','25.08','25.09','25.10','25.11','25.12','26.01','26.02','26.03','26.04','26.05','26.06'];
+  const XS_RATE = [8.34,8.21,8.06,8.63,8.73,8.62,9.21,8.80,8.04,8.01,8.78,8.85,9.27,8.53,8.15,7.45,8.33,7.84];
+  const XS_BOOK = [24828,24119,24095,26335,26955,27667,30243,31223,26731,28245,31500,31196,36760,30209,38596,18986,18706,23280];
+  const XS_GMV  = [105.8,91.2,94.0,102.4,101.6,106.2,122.8,115.7,99.6,108.2,123.9,121.9,150.2,126.4,167.7,76.6,79.0,112.2];
+  // 전체 호텔 (24.03 ~ 26.06 · OK · KRW)
+  const TT_M   = ['24.03','24.04','24.05','24.06','24.07','24.08','24.09','24.10','24.11','24.12','25.01','25.02','25.03','25.04','25.05','25.06','25.07','25.08','25.09','25.10','25.11','25.12','26.01','26.02','26.03','26.04','26.05','26.06'];
+  const TT_AMT = [542,530,538,540,811,783,655,659,681,676,724,662,627,629,634,677,880,743,633,638,684,697,800,685,720,636,678,855];
+  const TT_RES = [177780,174928,172627,162870,240031,268426,224345,224571,223527,214534,238923,232889,208251,215361,224759,231802,297923,269876,245710,245937,255677,256112,282710,250925,247784,230417,248461,285556];
+
+  const fmtComma = v => v.toLocaleString('en-US');
+  const fmtMan   = v => (v/10000).toFixed(1)+'만';
+
+  function combo(elId, o){
+    const el = document.getElementById(elId); if(!el) return;
+    const W=1000, H=330, padL=10, padR=10, padT=44, padB=30;
+    const n=o.labels.length, plotW=W-padL-padR, plotH=H-padT-padB;
+    const bmax=Math.max.apply(null,o.bars)*1.12;
+    const bw=plotW/n;
+    let s=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img">`;
+    // bars + bar labels
+    o.bars.forEach((v,i)=>{
+      const h=plotH*(v/bmax), x=padL+i*bw+bw*0.18, w=bw*0.64, y=padT+plotH-h;
+      const col=(i===o.hl)?'#FE5A36':o.barColor;
+      s+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" fill="${col}"/>`;
+      if(o.barLabels){
+        const lab=o.barFmt?o.barFmt(v):v;
+        const fill=(i===o.hl)?'#FE5A36':'#B9B9B9';
+        s+=`<text x="${(x+w/2).toFixed(1)}" y="${(y-5).toFixed(1)}" fill="${fill}" font-size="${o.barFont||10.5}" font-weight="${i===o.hl?900:700}" text-anchor="middle">${lab}</text>`;
+      }
+    });
+    // line + line labels
+    if(o.line){
+      const lv=o.line, lmin=Math.min.apply(null,lv), lmax=Math.max.apply(null,lv);
+      const lpad=(lmax-lmin)*0.3||1;
+      const lo2=o.lineShared?0:lmin-lpad, hi2=o.lineShared?bmax:lmax+lpad*1.6;
+      const pts=lv.map((v,i)=>[padL+i*bw+bw/2, padT+plotH-plotH*((v-lo2)/(hi2-lo2))]);
+      s+=`<polyline fill="none" stroke="${o.lineColor}" stroke-width="2.5" points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}"/>`;
+      pts.forEach((p,i)=>{
+        s+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.6" fill="${o.lineColor}"/>`;
+        const k=o.lineLabelEvery||1;
+        if(o.lineLabels && (i%k===0 || i===n-1)){
+          const lab=o.lineFmt?o.lineFmt(lv[i]):lv[i];
+          s+=`<text x="${p[0].toFixed(1)}" y="${(p[1]-8).toFixed(1)}" fill="${o.lineColor}" font-size="${o.lineFont||10.5}" font-weight="800" text-anchor="middle">${lab}</text>`;
+        }
+      });
+    }
+    // x labels
+    const k=o.labelEvery||1;
+    o.labels.forEach((lb,i)=>{ if(i%k===0||i===n-1){ const x=padL+i*bw+bw/2; s+=`<text x="${x.toFixed(1)}" y="${H-9}" fill="#8E8E8E" font-size="12" text-anchor="middle">${lb}</text>`; }});
+    s+=`</svg>`; el.innerHTML=s;
+  }
+
+  // 5) 크로스셀 추이 — 예약수(막대·라벨) + 비율%(선·라벨)
+  combo('t-xsrate',{labels:XS_M, bars:XS_BOOK, barColor:'#5B6BB0', barLabels:true, barFmt:fmtComma, barFont:9,
+                    line:XS_RATE, lineColor:'#FE5A36', lineLabels:true, lineFmt:v=>v.toFixed(2)+'%', lineFont:10,
+                    hl:12, labelEvery:2});
+  // 5) 크로스셀 호텔 거래액 — 막대·라벨
+  combo('t-xsgmv', {labels:XS_M, bars:XS_GMV, barColor:'#8E5AA8', barLabels:true, barFmt:v=>v.toFixed(0), barFont:10,
+                    hl:14, labelEvery:2});
+  // 6) 크로스셀 vs 전체 호텔 — 지수화 비교 (25.01=100, 동일 스케일)
+  const TT18   = TT_AMT.slice(10);                                  // 25.01~26.06
+  const IDX_TT = TT18.map(v=>Math.round(v/TT18[0]*1000)/10);
+  const IDX_XS = XS_GMV.map(v=>Math.round(v/XS_GMV[0]*1000)/10);
+  const SHARE  = XS_GMV.map((v,i)=>Math.round(v/TT18[i]*1000)/10);  // 비중 %
+  combo('t-cmp',  {labels:XS_M, bars:IDX_TT, barColor:'#2E9E4F', barLabels:true, barFmt:v=>Math.round(v), barFont:9,
+                   line:IDX_XS, lineColor:'#FE5A36', lineShared:true, lineLabels:true, lineLabelEvery:3, lineFmt:v=>Math.round(v), lineFont:10,
+                   labelEvery:3});
+  combo('t-share',{labels:XS_M, bars:SHARE, barColor:'#FE5A36', barLabels:true, barFmt:v=>v.toFixed(1)+'%', barFont:9,
+                   hl:14, labelEvery:3});
+  // 6) 참고 — 전체 호텔 거래액(막대·라벨) + 예약수(선·라벨 4개월마다)
+  combo('t-total', {labels:TT_M, bars:TT_AMT, barColor:'#2E9E4F', barLabels:true, barFmt:v=>v, barFont:9,
+                    line:TT_RES, lineColor:'#6BA8E8', lineLabels:true, lineLabelEvery:4, lineFmt:fmtMan, lineFont:9.5,
+                    hl:16, labelEvery:3});
+</script>
+</body>
+</html>
