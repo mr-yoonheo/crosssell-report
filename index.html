@@ -56,6 +56,17 @@
   .giant .u { font-size:0.5em; }
   .giant-cap { font-size:15px; font-weight:800; color:var(--ink-2); margin-top:14px; }
   .giant-cap b { color:var(--ink); }
+  .gpair { display:flex; align-items:flex-end; gap:16px; flex-wrap:wrap; }
+  .gp .gp-k { font-size:15px; font-weight:900; color:var(--ink-2); margin-bottom:6px; letter-spacing:-0.01em; }
+  .gp .gp-k.tgk { color:var(--coral); }
+  .gp .gp-v { font-size:clamp(40px,6vw,76px); font-weight:900; letter-spacing:-0.04em; line-height:0.9; color:var(--ink); }
+  .gp .gp-v .u { font-size:0.5em; }
+  .gp .gp-v.tg { color:var(--coral); }
+  .gp-arw { font-size:clamp(24px,3vw,38px); font-weight:900; color:var(--ink-2); padding-bottom:6px; }
+  .gpair.small { margin-top:16px; padding-top:14px; border-top:2px solid rgba(0,0,0,0.18); }
+  .gpair.small .gp-v { font-size:clamp(26px,3.2vw,40px); }
+  .gpair.small .gp-k { font-size:13px; }
+  .gpair.small .gp-arw { font-size:20px; padding-bottom:3px; }
   .substat { display:flex; gap:26px; flex-wrap:wrap; }
   .substat-title { font-size:17px; font-weight:900; color:var(--ink); letter-spacing:-0.02em; border-top:2px solid rgba(0,0,0,0.18); padding-top:16px; margin-bottom:-6px; }
   .substat .s { display:flex; flex-direction:column; gap:3px; }
@@ -223,6 +234,8 @@
   .pass.jp { border-top:5px solid var(--coral); }
   .pass.jj { border-top:5px solid var(--naver); }
   .pass .p-left { width:41%; padding:20px; border-right:2px dashed rgba(255,255,255,0.28); display:flex; flex-direction:column; position:relative; }
+  .p-thumb { margin:-20px -20px 14px; height:104px; overflow:hidden; border-bottom:1px solid var(--line); }
+  .p-thumb svg { width:100%; height:100%; display:block; }
   .pass .p-left::before, .pass .p-left::after { content:''; position:absolute; right:-10px; width:18px; height:18px; border-radius:50%; background:#111; border:1px solid var(--line); z-index:2; }
   .pass .p-left::before { top:-10px; } .pass .p-left::after { bottom:-10px; }
   .p-kicker { font-size:10px; font-weight:900; letter-spacing:0.16em; text-transform:uppercase; color:var(--d-mute); }
@@ -304,9 +317,17 @@
       <div class="h-left">
         <span class="blabel">연간 크로스셀 호텔 거래액</span>
         <div>
-          <div class="giant tnum">913<span class="u">억</span><span class="arw">→</span><span class="tg">1,500<span class="u">억</span></span></div>
-          <div class="giant-cap">25년 실적 <b>913억</b> → 26년 목표 <b>1,500억</b> · <b>+64% 성장</b> (메인 KPI)</div>
-          <div class="giant-cap" style="margin-top:8px; font-size:13px;">*매출 기준(거래액 × 수수료 8%): <b>73억 → 120억</b></div>
+          <div class="gpair">
+            <div class="gp"><div class="gp-k">25년 전체 거래액 (실적)</div><div class="gp-v tnum">913<span class="u">억</span></div></div>
+            <div class="gp-arw">→</div>
+            <div class="gp"><div class="gp-k tgk">26년 KPI (목표)</div><div class="gp-v tg tnum">1,500<span class="u">억</span></div></div>
+          </div>
+          <div class="giant-cap" style="margin-top:10px">전년 대비 <b>+64% 성장 목표</b> (메인 KPI)</div>
+          <div class="gpair small">
+            <div class="gp"><div class="gp-k">25년 매출 (거래액×수수료 8%)</div><div class="gp-v tnum">73<span class="u">억</span></div></div>
+            <div class="gp-arw">→</div>
+            <div class="gp"><div class="gp-k tgk">26년 매출 목표</div><div class="gp-v tg tnum">120<span class="u">억</span></div></div>
+          </div>
         </div>
         <div class="substat-title">현재 어느 정도 했나? — 상반기 실적</div>
         <div class="substat">
@@ -530,6 +551,18 @@
         <!-- 일본패스 -->
         <div class="pass jp">
           <div class="p-left">
+            <div class="p-thumb"><svg viewBox="0 0 220 104" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="일본">
+              <rect width="220" height="104" fill="#262028"/>
+              <circle cx="58" cy="32" r="21" fill="#E8433F"/>
+              <polygon points="26,104 108,28 190,104" fill="#3E4A5E"/>
+              <polygon points="88,47 108,28 128,47 119,43 113,49 108,43 103,49 97,43" fill="#EDEDED"/>
+              <g fill="#D6453D">
+                <rect x="156" y="52" width="7" height="52"/>
+                <rect x="196" y="52" width="7" height="52"/>
+                <rect x="147" y="44" width="65" height="9" rx="2"/>
+                <rect x="153" y="61" width="53" height="6"/>
+              </g>
+            </svg></div>
             <div class="p-kicker">NAVER 여행 · PASS</div>
             <div class="p-name">일본패스<span class="p-en">JAPAN PASS</span></div>
             <div class="p-target"><b>대상</b> · 일본 항공권 구매자<br/>구매 즉시 자동 발급</div>
@@ -544,6 +577,15 @@
         <!-- 제주패스 -->
         <div class="pass jj">
           <div class="p-left">
+            <div class="p-thumb"><svg viewBox="0 0 220 104" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="제주">
+              <rect width="220" height="104" fill="#1E2A30"/>
+              <circle cx="172" cy="30" r="18" fill="#F49A3C"/>
+              <ellipse cx="181" cy="15" rx="8" ry="4" fill="#3E7A4E" transform="rotate(-24 181 15)"/>
+              <path d="M0,104 L58,44 Q76,26 94,44 L152,104 Z" fill="#3E7A4E"/>
+              <ellipse cx="76" cy="40" rx="15" ry="5" fill="#2E5A3A"/>
+              <path d="M0,86 Q20,78 40,86 T80,86 T120,86 T160,86 T200,86 T240,86 L240,104 L0,104 Z" fill="#2E6E8E"/>
+              <path d="M0,95 Q20,89 40,95 T80,95 T120,95 T160,95 T200,95 T240,95 L240,104 L0,104 Z" fill="#3E88AA"/>
+            </svg></div>
             <div class="p-kicker">NAVER 여행 · PASS</div>
             <div class="p-name">제주패스<span class="p-en">JEJU PASS</span></div>
             <div class="p-target"><b>대상</b> · 제주 항공권 구매자<br/>구매 즉시 자동 발급</div>
@@ -573,9 +615,17 @@
     <section class="box dark">
       <div class="sec-title"><div><h2>항공-티켓 크로스셀 전략</h2><div class="st-sub">호텔에 이은 두 번째 크로스셀 카테고리 — 유심·티켓 확장 구상</div></div><span class="sec-tag">Next · 구상중</span></div>
       <div class="narr">
-        <div class="n-item"><div class="n-no">+</div><div class="n-body">
+        <div class="n-item"><div class="n-no">1</div><div class="n-body">
           <div class="n-t">유심 · 티켓 위주로, 하나투어(와그)와 협력<span class="n-tag">CONCEPT</span></div>
-          <div class="n-d">현재 티켓 카테고리는 상품 수가 많지 않지만, 여행 필수재인 <b>유심(eSIM) · 입장권 티켓</b> 위주로 <b>하나투어(와그)와 협력</b>하여 항공-티켓 크로스셀 전략을 구상 중. 항공권 예약으로 확보한 여정 정보(목적지·출발일)를 활용해 해당 목적지의 유심·티켓을 연계 추천하는 구조로, 호텔 크로스셀과 동일한 <b>골든타임 접점(예약완료 직후)</b>을 활용한다.</div>
+          <div class="n-d">현재 티켓 카테고리는 상품 수가 많지 않지만, 여행 필수재인 <b>유심(eSIM) · 입장권 티켓</b> 위주로 <b>하나투어(와그)와 협력</b>하여 항공-티켓 크로스셀 전략을 구상 중. 와그의 티켓·액티비티 인벤토리를 활용하면 <b>자체 소싱 부담 없이 빠르게 시작</b>할 수 있다.</div>
+        </div></div>
+        <div class="n-item"><div class="n-no">2</div><div class="n-body">
+          <div class="n-t">왜 유심·티켓인가<span class="n-tag">WHY</span></div>
+          <div class="n-d">유심은 해외여행자 대부분이 구매하는 <b>필수재라 결합 니즈가 검증</b>돼 있고, 입장권·티켓은 여행 준비 단계에서 미리 사두는 상품이라 <b>항공 구매 직후(골든타임)와 구매 시점이 정확히 겹친다</b>. 단가가 낮아 구매 저항이 작고, 호텔 대비 재고·정산 리스크도 적어 <b>두 번째 크로스셀 카테고리로 진입 장벽이 가장 낮다</b>.</div>
+        </div></div>
+        <div class="n-item"><div class="n-no">3</div><div class="n-body">
+          <div class="n-t">실행 방향<span class="n-tag">HOW</span></div>
+          <div class="n-d">① 와그 인벤토리 연동(유심·입장권부터) → ② 항공 예약완료 접점(완료 페이지·톡톡·Braze)에 <b>목적지 기반 유심·티켓 추천</b> 노출 → ③ 크로스셀 핵심 시장인 <b>일본부터 시범 운영</b> 후 성과 검증 → 카테고리·시장 확대. 성과는 호텔과 동일한 <b>여행 일정 매칭 기준으로 측정</b>해 지표 일관성을 유지한다.</div>
         </div></div>
       </div>
       <div class="plan-legend" style="margin-top:14px">카테고리: <span class="chip mid" style="padding:1px 10px">유심 · eSIM</span> <span class="chip mid" style="padding:1px 10px">입장권 · 티켓</span> &nbsp;·&nbsp; 파트너: <span class="chip lo" style="padding:1px 10px">하나투어 (와그)</span> &nbsp;·&nbsp; 상태: <span class="chip plan" style="padding:1px 10px">구상중</span></div>
