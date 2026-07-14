@@ -263,6 +263,9 @@
   .pf-d { font-size:12px; font-weight:700; color:var(--d-mute); line-height:1.55; }
   .pf-d b { color:var(--d-text); }
   .pf-arrow { display:flex; align-items:center; justify-content:center; color:var(--coral); font-weight:900; font-size:18px; }
+  .pflow.three { grid-template-columns:1fr 26px 1fr 26px 1fr; }
+  .pf-step.hot { border:1px solid var(--coral); background:rgba(254,90,54,0.08); }
+  .pf-step.hot .pf-t { color:var(--coral); }
   .pf-note { margin-top:16px; font-size:12px; font-weight:700; color:var(--d-faint); line-height:1.6; }
 
   @media (max-width:960px){
@@ -344,6 +347,70 @@
         <div class="cb me"><div class="cl"><span class="ck">26년 1~6월 (+18%)</span><span class="cv tnum">712.1억</span></div><div class="ctrack"><i style="width:100%"></i></div></div>
         <div style="font-size:10.5px; font-weight:700; color:var(--ink-2); margin-top:2px; line-height:1.5;">* 25년 913억·목표 1,500억은 KPI 수립 시 집계 기준 · 상반기 실적(601.2 / 712.1억)과 달성률은 여행 일정 매칭 기준(상단 정의) · 매출 = 거래액 × 평균 수수료 8%</div>
       </div>
+    </section>
+
+
+    <!-- 1.5) 측정 논리 & 세그먼트별 목표 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>측정 논리 &amp; 세그먼트별 목표</h2><div class="st-sub">크로스셀율이 거래액으로, 다시 수수료(매출)로 이어지는 구조 — 세그먼트별 상향 목표 제안</div></div><span class="sec-tag">Logic &amp; Targets</span></div>
+      <div class="pflow three">
+        <div class="pf-step"><div class="pf-no">STEP 1</div><div class="pf-t">크로스셀율 ↑</div><div class="pf-d">세그먼트별 <b>목표 상향</b> — 사람 수 기준 비율을 끌어올림</div></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-no">STEP 2</div><div class="pf-t">거래액으로 치환</div><div class="pf-d"><b>크로스셀율 × 항공 구매자 × 객단가</b> = 크로스셀 거래액</div></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-no">STEP 3</div><div class="pf-t">수수료(매출) 적용</div><div class="pf-d"><b>거래액 × 수수료율</b> = 수수료 · 호텔 8% / 티켓 1% (할인 3%→1%)</div></div>
+      </div>
+      <div class="dt" style="margin-top:26px">세그먼트별 목표 <span class="dtag">26년 상반기 현재 → 목표 (목표 %는 상향 제안치)</span></div>
+      <div class="overflow-x"><table>
+        <thead><tr><th>세그먼트</th><th>크로스셀율 현재 → 목표</th><th class="num">거래액 성장</th><th class="num">수수료 성장</th></tr></thead>
+        <tbody>
+          <tr><td class="cty">호텔 · 국내</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">7.2% → <span style="color:var(--coral)">9.0%</span></td><td class="num tnum">+46.9억</td><td class="num tnum">+3.8억</td></tr>
+          <tr><td class="cty">호텔 · 해외</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">9.56% → <span style="color:var(--coral)">12.0%</span></td><td class="num tnum">+136.7억</td><td class="num tnum">+10.9억</td></tr>
+          <tr><td class="cty">티켓 · 해외</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">0% → <span style="color:var(--coral)">15%</span></td><td class="num tnum">+53.2억</td><td class="num tnum">+0.5억</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tbl-note">· 거래액·수수료 성장 = 위 산식(율 × 항공 구매자 × 객단가, × 수수료율)으로 환산한 추정치 · 크로스셀율 = 사람 수 기준(일정 매칭) · 티켓 현재 0%는 서비스 개시 전 기준</div>
+      <div class="pass-stat" style="margin-top:14px; margin-bottom:0; border-color:rgba(217,138,43,0.6); background:rgba(217,138,43,0.08)">외형(거래액)은 티켓도 키우지만, <b style="color:#E8A54B">수익(수수료)은 호텔이 견인</b> — 수수료율 호텔 8% vs 티켓 1%</div>
+    </section>
+
+    <!-- 1.6) +64% 성장 경로 (워터폴) -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>+64% 성장 경로 — 호텔이 대부분, 티켓이 추가</h2><div class="st-sub">25년 913억 → 26년 목표 1,500억 (+587억)을 무엇으로 채우는가</div></div><span class="sec-tag">Growth Bridge</span></div>
+      <div class="trend">
+        <svg viewBox="0 0 1000 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="성장 경로 워터폴">
+          <line x1="20" y1="320" x2="980" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+          <line x1="150" y1="149.6" x2="190" y2="149.6" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <line x1="310" y1="102.9" x2="350" y2="102.9" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <line x1="470" y1="78.6" x2="510" y2="78.6" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <line x1="630" y1="56.2" x2="670" y2="56.2" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <line x1="790" y1="40" x2="830" y2="40" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <rect x="30" y="149.6" width="120" height="170.4" fill="#2E9E4F"/>
+          <rect x="190" y="102.9" width="120" height="46.7" fill="#2E9E4F"/>
+          <rect x="350" y="78.6" width="120" height="24.3" fill="#2E9E4F"/>
+          <rect x="510" y="56.2" width="120" height="22.4" fill="#2E9E4F"/>
+          <rect x="670" y="40" width="120" height="16.2" fill="#D98A2B"/>
+          <rect x="830" y="56.2" width="120" height="263.8" fill="#2E9E4F"/>
+          <rect x="830" y="40" width="120" height="16.2" fill="#D98A2B"/>
+          <text x="90" y="138" font-size="18" font-weight="900" fill="#ECECEC" text-anchor="middle">913억</text>
+          <text x="250" y="92" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+250</text>
+          <text x="410" y="68" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+130</text>
+          <text x="570" y="46" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+120</text>
+          <text x="730" y="30" font-size="17" font-weight="800" fill="#E8A54B" text-anchor="middle">+87</text>
+          <text x="890" y="28" font-size="20" font-weight="900" fill="#FFFFFF" text-anchor="middle">1,500억</text>
+          <text x="90" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">25년 실적</text>
+          <text x="250" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">성수기·기존</text>
+          <text x="410" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">시크릿몰</text>
+          <text x="570" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">지역패스</text>
+          <text x="730" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">티켓</text>
+          <text x="890" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">26년 목표</text>
+        </svg>
+      </div>
+      <div class="trend-legend">
+        <span><span class="sw" style="background:#2E9E4F"></span>호텔 (성수기 · 시크릿몰 · 지역패스)</span>
+        <span><span class="sw" style="background:#D98A2B"></span>티켓 (입장권 · 유심)</span>
+        <span style="color:var(--coral); font-weight:800;">※ 단계별 금액은 예시 — 실제 기여는 데이터로 확정 필요</span>
+      </div>
+      <div class="tnote">근거 — 전체 호텔 거래액 內 크로스셀 비중이 <b>14.6%(25.01) → 23.3%(26.03)</b>로 상승 중: 크로스셀이 호텔 거래액 성장을 견인하는 국면 (상세 차트는 아래 '추이 비교' 섹션). 상반기 실적 712.1억 · 달성률 47.5% — 남은 <b>787.9억</b>을 하반기 성수기 + 신규 과제로 채우는 구조.</div>
     </section>
 
     <!-- 2) 크로스셀 현황 요약 -->
@@ -507,9 +574,9 @@
       <div class="sec-title"><div><h2>26년 실행 계획</h2><div class="st-sub">현재 진행 중인 상시 프로그램과 예정 과제</div></div><span class="sec-tag">2026 Roadmap</span></div>
       <div class="kpi-callout">
         <div class="kc"><div class="kc-k">메인 KPI · 연간 크로스셀 호텔 거래액</div><div class="kc-v tnum"><span class="pos">1,500억</span> <small>(25년 913억 대비 +64%)</small></div></div>
-        <div class="kc"><div class="kc-k">보조 KPI · 크로스셀 비율</div><div class="kc-v tnum">국내 <span class="pos">7%↑</span> · 해외 <span class="pos">10%↑</span></div></div>
+        <div class="kc"><div class="kc-k">크로스셀율 목표 (상향 제안 · 일정 매칭 기준)</div><div class="kc-v tnum">호텔 국내 <span class="pos">9.0%</span> · 호텔 해외 <span class="pos">12.0%</span> · 티켓 <span class="pos">15%</span></div></div>
       </div>
-      <div class="tbl-note" style="margin:-6px 0 16px">* KPI는 26년 초 수립 당시 집계 기준(월별 동시예약) — 본문 현황(일정 매칭 기준: 국내 7.2% · 해외 9.6%)과 산정 방식이 다름</div>
+      <div class="tbl-note" style="margin:-6px 0 16px">* 거래액 1,500억은 연초 수립 KPI · 크로스셀율 목표는 상향 제안치 (현재: 국내 7.2% · 해외 9.56% · 티켓 0%) — 기존 목표(국내 7%·해외 10%)는 국내가 이미 7.2%로 초과하여 상향</div>
 
       <div class="plan-group ongoing">
         <div class="plan-head on-head"><span class="pg-dir">🟢 현재 진행 중</span><span class="pg-sub">상시 운영</span></div>
@@ -533,10 +600,20 @@
           <div class="pc-why">기대 효과 — 크로스셀 호텔 거래액의 54%(일본+제주)인 핵심 2개 시장 집중 공략 · 상세 구조는 아래 섹션 참조</div>
         </div>
         <div class="pcard">
-          <div class="pc-head"><span class="pc-name">해외 패스 확대</span><span class="chip plan">기획중</span></div>
-          <div class="pc-desc">일본·제주패스 성과 검증 후 <b>중국 · 베트남 패스로 라인업 확대</b>. 베트남은 크로스셀 비율 11.9%로 최상위(결합 니즈 검증), 중국은 모수 대비 비율 5.3%로 개선 여지가 큰 시장.</div>
-          <div class="pc-why">기대 효과 — 검증된 패스 모델의 수평 확장으로 해외 크로스셀 커버리지 확대</div>
+          <div class="pc-head"><span class="pc-name">패스 확대 — 지역·상품 2축</span><span class="chip plan">기획중</span></div>
+          <div class="pc-desc">일본·제주에서 검증 후 두 축으로 확대. <b>지역축</b>: 중국·베트남 패스 추가(베트남 크로스셀율 11.9% 최상위, 중국 5.3% 개선 여지). <b>상품축</b>: 호텔 → <b>티켓·투어까지 혜택 확장</b> (8월 일본패스에 티켓 결합).</div>
+          <div class="pc-why">기대 효과 — "일본·제주서 검증하고, 지역·상품으로 넓힐 수 있는 틀" 확보</div>
         </div>
+      </div>
+      <div class="dt" style="margin-top:26px">로드맵 <span class="dtag">2026 하반기 — 핵심은 8월</span></div>
+      <div class="pflow" style="margin-top:12px">
+        <div class="pf-step"><div class="pf-no">7월</div><div class="pf-t">공급 · 연동</div><div class="pf-d">하나투어 티켓/패스를 <b>와그 경유로 공급 계약 · 연동</b></div></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step hot"><div class="pf-no">8월 ★ 핵심</div><div class="pf-t">일본 파일럿</div><div class="pf-d"><b>일본패스에 티켓 결합</b> 파일럿 — 상품축 확장 첫 검증</div></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-no">9~10월</div><div class="pf-t">운영 · 검증</div><div class="pf-d">전환율·거래액 기여 측정 (일정 매칭 기준으로 동일 집계)</div></div>
+        <div class="pf-arrow">→</div>
+        <div class="pf-step"><div class="pf-no">11월~</div><div class="pf-t">확대</div><div class="pf-d">지역축(중국·베트남) · 상품축(티켓·투어) 확장</div></div>
       </div>
       <div class="plan-legend" style="margin-top:14px">상태: <span class="chip on" style="padding:1px 8px">운영중</span> <span class="chip plan" style="padding:1px 8px">기획중</span></div>
     </section>
@@ -590,6 +667,15 @@
         <div class="pf-step"><div class="pf-no">STEP 4</div><div class="pf-t">월간 추첨 100만원</div><div class="pf-d">패스 이용자 중 매달 1명 — <b>참여 지속·재방문 훅</b></div></div>
       </div>
       <div class="pf-note">· 골든타임(항공 구매 후 30일, 크로스셀의 84% 발생 구간) 안에서 혜택이 작동하도록 설계 · 적립률·체험 기간 등 세부 스킴은 기획 확정 후 업데이트</div>
+      <div class="dt" style="margin-top:28px">확장 구조 — 일본·제주에서 검증 후, 두 축으로 <span class="dtag">Expansion</span></div>
+      <div style="display:grid; grid-template-columns:1fr 34px 1.2fr; gap:12px; align-items:center; margin-top:12px;">
+        <div class="pf-step"><div class="pf-no">검증 · 현재</div><div class="pf-t">일본 · 제주 패스</div><div class="pf-d">호텔 혜택 중심 성과 검증 — 두 시장이 크로스셀 호텔 거래액의 <b>54%</b></div></div>
+        <div class="pf-arrow">→</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="pf-step hot"><div class="pf-no">상품축 · 8월</div><div class="pf-t">호텔 → + 티켓·투어</div><div class="pf-d">일본패스에 티켓 결합 (하나투어→와그 공급)</div></div>
+          <div class="pf-step"><div class="pf-no">지역축 · 11월~</div><div class="pf-t">일본·제주 → + 중국·베트남</div><div class="pf-d">검증된 패스 틀의 지역 확장</div></div>
+        </div>
+      </div>
     </section>
 
     <!-- 11) 항공-티켓 크로스셀 전략 -->
@@ -598,15 +684,15 @@
       <div class="narr">
         <div class="n-item"><div class="n-no">1</div><div class="n-body">
           <div class="n-t">유심 · 티켓 위주로, 하나투어(와그)와 협력<span class="n-tag">CONCEPT</span></div>
-          <div class="n-d">현재 티켓 카테고리는 상품 수가 많지 않지만, 여행 필수재인 <b>유심(eSIM) · 입장권 티켓</b> 위주로 <b>하나투어(와그)와 협력</b>하여 항공-티켓 크로스셀 전략을 구상 중. 와그의 티켓·액티비티 인벤토리를 활용하면 <b>자체 소싱 부담 없이 빠르게 시작</b>할 수 있다.</div>
+          <div class="n-d">현재 티켓 카테고리는 상품 수가 많지 않지만, 여행 필수재인 <b>유심(eSIM) · 입장권 티켓</b> 위주로 <b>하나투어(와그)와 협력</b>하여 항공-티켓 크로스셀 전략을 구상 중. 하나투어의 티켓·패스를 <b>와그(하나투어 투자사) 경유로 공급</b>받는 구조라, 자체 소싱 부담 없이 빠르게 시작할 수 있다.</div>
         </div></div>
         <div class="n-item"><div class="n-no">2</div><div class="n-body">
           <div class="n-t">왜 유심·티켓인가<span class="n-tag">WHY</span></div>
-          <div class="n-d">유심은 해외여행자 대부분이 구매하는 <b>필수재라 결합 니즈가 검증</b>돼 있고, 입장권·티켓은 여행 준비 단계에서 미리 사두는 상품이라 <b>항공 구매 직후(골든타임)와 구매 시점이 정확히 겹친다</b>. 단가가 낮아 구매 저항이 작고, 호텔 대비 재고·정산 리스크도 적어 <b>두 번째 크로스셀 카테고리로 진입 장벽이 가장 낮다</b>.</div>
+          <div class="n-d">유심은 해외여행자 대부분이 구매하는 <b>필수재라 결합 니즈가 검증</b>돼 있고, 입장권·티켓은 여행 준비 단계에서 미리 사두는 상품이라 <b>골든타임(구매 직후)~출발 전 리드타임과 구매 시점이 정확히 겹친다</b>. 단가가 낮아 구매 저항이 작고, 호텔 대비 재고·정산 리스크도 적어 <b>두 번째 크로스셀 카테고리로 진입 장벽이 가장 낮다</b>. 참고로 <b>마이리얼트립은 해외 티켓 크로스셀율 38%</b>, 비항공 크로스셀 중 <b>T&amp;A가 40.6%로 최대 축</b> — 티켓이 크로스셀 주력 카테고리임이 이미 검증돼 있다.</div>
         </div></div>
         <div class="n-item"><div class="n-no">3</div><div class="n-body">
           <div class="n-t">실행 방향<span class="n-tag">HOW</span></div>
-          <div class="n-d">① 와그 인벤토리 연동(유심·입장권부터) → ② 항공 예약완료 접점(완료 페이지·톡톡·Braze)에 <b>목적지 기반 유심·티켓 추천</b> 노출 → ③ 크로스셀 핵심 시장인 <b>일본부터 시범 운영</b> 후 성과 검증 → 카테고리·시장 확대. 성과는 호텔과 동일한 <b>여행 일정 매칭 기준으로 측정</b>해 지표 일관성을 유지한다.</div>
+          <div class="n-d">① 와그 인벤토리 연동(유심·입장권부터) → ② 항공 예약완료 접점(완료 페이지·톡톡·Braze)에 <b>목적지 기반 유심·티켓 추천</b> 노출 → ③ <b>8월 일본 파일럿(일본패스에 티켓 결합)</b>부터 시범 운영 후 성과 검증 → 카테고리·시장 확대. 성과는 호텔과 동일한 <b>여행 일정 매칭 기준으로 측정</b>해 지표 일관성을 유지한다.</div>
         </div></div>
       </div>
       <div class="plan-legend" style="margin-top:14px">카테고리: <span class="chip mid" style="padding:1px 10px">유심 · eSIM</span> <span class="chip mid" style="padding:1px 10px">입장권 · 티켓</span> &nbsp;·&nbsp; 파트너: <span class="chip lo" style="padding:1px 10px">하나투어 (와그)</span> &nbsp;·&nbsp; 상태: <span class="chip plan" style="padding:1px 10px">구상중</span></div>
