@@ -280,6 +280,34 @@
     .pf-arrow { transform:rotate(90deg); padding:2px 0; }
   }
 
+  /* 축 헤더 (히어로 내부, 동일 크기) */
+  .axis-h { display:flex; align-items:center; gap:11px; font-size:21px; font-weight:900; color:var(--ink); letter-spacing:-0.02em; margin-bottom:16px; }
+  .axis-h i { width:13px; height:13px; display:inline-block; }
+  .axis-div { border-top:2px solid rgba(0,0,0,0.18); margin:30px 0 24px; }
+  /* 민트(라이트) 배경 안에서 다크 컴포넌트 색 보정 */
+  .box.mint .dt { color:var(--ink); }
+  .box.mint .dt .dtag { color:var(--ink-2); }
+  .box.mint .tier .t-name { color:var(--ink); }
+  .box.mint .tier .t-def { color:var(--ink-2); }
+  .box.mint .kpi { border-color:rgba(0,0,0,0.3); }
+  .box.mint .kpi .kk { color:var(--ink-2); }
+  .box.mint .kpi.now .kk { color:var(--coral); }
+  .box.mint .kpi .kv { color:var(--ink); }
+  .box.mint .kpi .kd { color:var(--ink-2); }
+  .box.mint .kpi .kd b { color:var(--ink); }
+  .box.mint thead th { color:var(--ink-2); border-bottom-color:rgba(0,0,0,0.3); }
+  .box.mint tbody td { border-bottom-color:rgba(0,0,0,0.15); }
+  .box.mint tbody tr:hover { background:rgba(0,0,0,0.05); }
+  .box.mint td.cty { color:var(--ink); }
+  .box.mint td.num { color:#14622F; }
+  .box.mint .tbl-note { color:var(--ink-2); }
+  .box.mint .pf-step { border-color:rgba(0,0,0,0.3); background:rgba(255,255,255,0.4); }
+  .box.mint .pf-t { color:var(--ink); }
+  .box.mint .pf-d { color:var(--ink-2); }
+  .box.mint .pf-d b { color:var(--ink); }
+  .box.mint .pass-stat { color:var(--ink); border-color:rgba(179,106,26,0.7); background:rgba(217,138,43,0.16); }
+  .box.mint .pass-stat b { color:#A85F12; }
+
   footer { margin-top:40px; padding-top:22px; border-top:2px solid var(--d-line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; color:var(--d-faint); font-size:12px; font-weight:700; }
 
   @media (max-width:960px){
@@ -321,55 +349,55 @@
 
   <div class="grid">
 
-    <!-- 1) 축 1 · 거래액 (매출) -->
-    <section class="box mint hero">
-      <div class="h-left">
-        <span class="blabel">축 1 · 거래액 (매출)</span>
-        <div>
-          <div class="gpair">
-            <div class="gp"><div class="gp-k">25년 크로스셀 호텔 거래액 (실적)</div><div class="gp-v tnum">913<span class="u">억</span></div><div class="gp-k tnum" style="margin:8px 0 0; font-size:14px;">매출 <b>73억</b> <small>(수수료 8% 기준)</small></div></div>
-            <div class="gp-arw">→</div>
-            <div class="gp"><div class="gp-k tgk">26년 크로스셀 KPI (목표)</div><div class="gp-v tg tnum">1,500<span class="u">억</span></div><div class="gp-k tgk tnum" style="margin:8px 0 0; font-size:14px;">매출 <b>120억</b> <small>(수수료 8% 기준)</small></div></div>
+    <!-- 1) HERO — 두 축 (거래액 / 크로스셀율) -->
+    <section class="box mint">
+      <div class="axis-h"><i style="background:var(--coral)"></i>축 1 · 거래액 (매출)</div>
+      <div class="hero">
+        <div class="h-left">
+          <div>
+            <div class="gpair">
+              <div class="gp"><div class="gp-k">25년 크로스셀 호텔 거래액 (실적)</div><div class="gp-v tnum">913<span class="u">억</span></div><div class="gp-k tnum" style="margin:10px 0 0; font-size:19px;">매출 <b>73억</b> <small style="font-size:13px; font-weight:800;">(수수료 8% 기준)</small></div></div>
+              <div class="gp-arw">→</div>
+              <div class="gp"><div class="gp-k tgk">26년 크로스셀 KPI (목표)</div><div class="gp-v tg tnum">1,500<span class="u">억</span></div><div class="gp-k tgk tnum" style="margin:10px 0 0; font-size:19px;">매출 <b>120억</b> <small style="font-size:13px; font-weight:800;">(수수료 8% 기준)</small></div></div>
+            </div>
+            <div class="giant-cap" style="margin-top:12px">전년 대비 <b>+64% 성장 목표</b> (메인 KPI) · 매출 = 거래액 × 평균 수수료 8%</div>
           </div>
-          <div class="giant-cap" style="margin-top:12px">전년 대비 <b>+64% 성장 목표</b> (메인 KPI) · 매출 = 거래액 × 평균 수수료 8% · 크로스셀율(%)과는 별개 지표</div>
+          <div class="substat-title">현재 어느 정도 했나? — 크로스셀 상반기 실적</div>
+          <div class="substat">
+            <div class="s"><span class="sk">25년 1~6월 크로스셀 실적</span><span class="sv tnum">601.2억</span></div>
+            <div class="s"><span class="sk">26년 1~6월 크로스셀 실적</span><span class="sv tnum">712.1억 <span class="pos">+18%</span></span></div>
+            <div class="s"><span class="sk">목표 달성률 (712.1÷1,500)</span><span class="sv tnum"><span class="pos">47.5%</span></span></div>
+          </div>
         </div>
-        <div class="substat-title">현재 어느 정도 했나? — 크로스셀 상반기 실적</div>
-        <div class="substat">
-          <div class="s"><span class="sk">25년 1~6월 크로스셀 실적</span><span class="sv tnum">601.2억</span></div>
-          <div class="s"><span class="sk">26년 1~6월 크로스셀 실적</span><span class="sv tnum">712.1억 <span class="pos">+18%</span></span></div>
-          <div class="s"><span class="sk">목표 달성률 (712.1÷1,500)</span><span class="sv tnum"><span class="pos">47.5%</span></span></div>
+        <div class="cbars">
+          <div class="ct">26년 목표 달성 현황</div>
+          <div class="cb me"><div class="cl"><span class="ck">크로스셀 상반기 누적 712.1억 / 목표 1,500억</span><span class="cv tnum">47.5%</span></div><div class="ctrack"><i style="width:47.5%"></i></div></div>
+          <div class="ct" style="margin-top:8px">상반기 실적 비교 — 크로스셀 호텔 거래액 (1~6월 합계)</div>
+          <div class="cb"><div class="cl"><span class="ck">25년 1~6월</span><span class="cv tnum">601.2억</span></div><div class="ctrack"><i style="width:84.4%"></i></div></div>
+          <div class="cb me"><div class="cl"><span class="ck">26년 1~6월 (+18%)</span><span class="cv tnum">712.1억</span></div><div class="ctrack"><i style="width:100%"></i></div></div>
+          <div style="font-size:10.5px; font-weight:700; color:var(--ink-2); margin-top:2px; line-height:1.5;">* 25년 913억·목표 1,500억은 KPI 수립 시 집계 기준 · 상반기 실적(601.2 / 712.1억)과 달성률은 여행 일정 매칭 기준(상단 정의) · 매출 = 거래액 × 평균 수수료 8%</div>
         </div>
       </div>
-      <div class="cbars">
-        <div class="ct">26년 목표 달성 현황</div>
-        <div class="cb me"><div class="cl"><span class="ck">크로스셀 상반기 누적 712.1억 / 목표 1,500억</span><span class="cv tnum">47.5%</span></div><div class="ctrack"><i style="width:47.5%"></i></div></div>
-        <div class="ct" style="margin-top:8px">상반기 실적 비교 — 크로스셀 호텔 거래액 (1~6월 합계)</div>
-        <div class="cb"><div class="cl"><span class="ck">25년 1~6월</span><span class="cv tnum">601.2억</span></div><div class="ctrack"><i style="width:84.4%"></i></div></div>
-        <div class="cb me"><div class="cl"><span class="ck">26년 1~6월 (+18%)</span><span class="cv tnum">712.1억</span></div><div class="ctrack"><i style="width:100%"></i></div></div>
-        <div style="font-size:10.5px; font-weight:700; color:var(--ink-2); margin-top:2px; line-height:1.5;">* 25년 913억·목표 1,500억은 KPI 수립 시 집계 기준 · 상반기 실적(601.2 / 712.1억)과 달성률은 여행 일정 매칭 기준(상단 정의) · 매출 = 거래액 × 평균 수수료 8%</div>
-      </div>
-    </section>
 
-    <!-- 2) 축 2 · 크로스셀율 (%) -->
-    <section class="box dark">
-      <div class="sec-title"><div><h2>축 2 · 크로스셀율 (%)</h2><div class="st-sub">얼마나 잘 붙이는가 — 기준 두 개(예약자 / 거래액)로 측정 · 거래액 목표와는 별개 지표</div></div><span class="sec-tag">Axis 2 · Rate</span></div>
+      <div class="axis-div"></div>
+      <div class="axis-h"><i style="background:#5B6BB0"></i>축 2 · 크로스셀율 (%)</div>
 
-      <div class="tier"><span class="t-name"><i style="background:var(--coral)"></i>기준 A · 예약자 기준</span><span class="t-def">크로스셀 구매자 ÷ 항공 구매자 (사람 수 · 일정 매칭)</span></div>
+      <div class="tier"><span class="t-name"><i style="background:var(--coral)"></i>기준 A · 예약자 기준 크로스셀율</span><span class="t-def">크로스셀 구매자 ÷ 항공 구매자 (사람 수 · 일정 매칭)</span></div>
       <div class="grid kpis" style="grid-template-columns:1fr">
-        <div class="kpi now"><span class="kk">전체 크로스셀율 — 현재 → 목표</span><span class="kv tnum">8.3<small>%</small> <span style="font-size:0.6em; color:var(--d-mute)">→</span> <span style="color:var(--coral)">10.4<small>%</small></span></span><span class="kd">현재 8.3% = 26년 상반기 크로스셀 구매자 ÷ 항공 구매자 (126,387 ÷ 1,523,324명) · 목표 10.4% = 아래 세그먼트 상향안을 구매자 수로 가중 환산 (티켓 제외)</span></div>
+        <div class="kpi now"><span class="kk">전체 크로스셀율 — 현재 → 목표</span><span class="kv tnum">8.3<small>%</small> <span style="font-size:0.6em; color:var(--ink-2)">→</span> <span style="color:var(--coral)">12<small>%</small></span></span><span class="kd">현재 8.3% = 26년 상반기 크로스셀 구매자 ÷ 항공 구매자 (126,387 ÷ 1,523,324명) · 목표 12% = 상향 제안치 — 세그먼트 상향안의 가중 환산(10.4%)에서 추가 상향</span></div>
       </div>
       <div class="dt" style="margin-top:22px">참고 — 세그먼트별 상향안 <span class="dtag">26년 상반기 현재 → 상향 제안</span></div>
       <div class="overflow-x"><table>
         <thead><tr><th>세그먼트</th><th>크로스셀율 현재 → 목표</th><th class="num">거래액 성장</th><th class="num">수수료 성장</th></tr></thead>
         <tbody>
-          <tr><td class="cty">호텔 · 국내</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">7.2% → <span style="color:var(--coral)">9.0%</span></td><td class="num tnum">+46.9억</td><td class="num tnum">+3.8억</td></tr>
-          <tr><td class="cty">호텔 · 해외</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">9.56% → <span style="color:var(--coral)">12.0%</span></td><td class="num tnum">+136.7억</td><td class="num tnum">+10.9억</td></tr>
-          <tr><td class="cty">티켓 · 해외</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">0% → <span style="color:var(--coral)">15%</span></td><td class="num tnum">+53.2억</td><td class="num tnum">+0.5억</td></tr>
+          <tr><td class="cty">호텔 · 국내</td><td class="tnum" style="font-weight:900; color:var(--ink); font-size:16px;">7.2% → <span style="color:var(--coral)">9.0%</span></td><td class="num tnum">+46.9억</td><td class="num tnum">+3.8억</td></tr>
+          <tr><td class="cty">호텔 · 해외</td><td class="tnum" style="font-weight:900; color:var(--ink); font-size:16px;">9.56% → <span style="color:var(--coral)">12.0%</span></td><td class="num tnum">+136.7억</td><td class="num tnum">+10.9억</td></tr>
+          <tr><td class="cty">티켓 · 해외</td><td class="tnum" style="font-weight:900; color:var(--ink); font-size:16px;">0% → <span style="color:var(--coral)">15%</span></td><td class="num tnum">+53.2억</td><td class="num tnum">+0.5억</td></tr>
         </tbody>
       </table></div>
       <div class="tbl-note">· 거래액·수수료 성장 = 아래 산식(율 × 상반기 항공 구매자 × 객단가, × 수수료율)으로 환산한 반기 기준 추정치 · 티켓 현재 0%는 서비스 개시 전, 객단가 5만원 가정</div>
 
-      <div class="dt" style="margin-top:24px">측정 논리 <span class="dtag">율 → 거래액 → 수수료</span></div>
+      <div class="dt" style="margin-top:24px">측정 논리</div>
       <div class="pflow three" style="margin-top:12px">
         <div class="pf-step"><div class="pf-no">STEP 1</div><div class="pf-t">크로스셀율 ↑</div><div class="pf-d">세그먼트별 <b>목표 상향</b> — 사람 수 기준 비율을 끌어올림</div></div>
         <div class="pf-arrow">→</div>
@@ -377,13 +405,12 @@
         <div class="pf-arrow">→</div>
         <div class="pf-step"><div class="pf-no">STEP 3</div><div class="pf-t">수수료(매출) 적용</div><div class="pf-d"><b>거래액 × 수수료율</b> = 수수료 · 호텔 8% / 티켓 1% (할인 3%→1%)</div></div>
       </div>
-      <div class="pass-stat" style="margin-top:14px; margin-bottom:0; border-color:rgba(217,138,43,0.6); background:rgba(217,138,43,0.08)">외형(거래액)은 티켓도 키우지만, <b style="color:#E8A54B">수익(수수료)은 호텔이 견인</b> — 수수료율 호텔 8% vs 티켓 1%</div>
+      <div class="pass-stat" style="margin-top:14px; margin-bottom:0;">외형(거래액)은 티켓도 키우지만, <b>수익(수수료)은 호텔이 견인</b> — 수수료율 호텔 8% vs 티켓 1%</div>
 
-      <div class="tier second"><span class="t-name"><i style="background:#6BA8E8"></i>기준 B · 거래액 기준 (침투율)</span><span class="t-def">크로스셀 호텔 거래액 ÷ 전체 호텔 거래액 — 크로스셀이 호텔 성장을 견인하는 근거 지표</span></div>
+      <div class="tier second"><span class="t-name"><i style="background:#5B6BB0"></i>기준 B · 거래액 기준 크로스셀율</span><span class="t-def">크로스셀 호텔 거래액 ÷ 전체 호텔 거래액 (= 침투율)</span></div>
       <div class="grid kpis" style="grid-template-columns:1fr">
-        <div class="kpi"><span class="kk">침투율 — 25년 연간 → 26년 목표 (제안)</span><span class="kv tnum">15.7<small>%</small> <span style="font-size:0.6em; color:var(--d-mute)">→</span> <span style="color:var(--coral)">18<small>%+</small></span></span><span class="kd">15.7% = 25년 크로스셀 1,293.3억 ÷ 전체 호텔 8,228억 · 26년 상반기 16.3%(712.1 ÷ 4,374억) · 월별로는 <b style="color:var(--d-text)">14.6%(25.01) → 23.3%(26.03)</b> 상승 중 (추이 차트: 아래 비교 섹션)</span></div>
+        <div class="kpi"><span class="kk">월별 침투율 — 25년 1월 → 26년 3월 (역대 최고)</span><span class="kv tnum">14.6<small>%</small> <span style="font-size:0.6em; color:var(--ink-2)">→</span> <span style="color:var(--coral)">23.3<small>%</small></span></span><span class="kd">14.6% = 25년 1월 크로스셀 105.8억 ÷ 전체 호텔 724억 · 23.3% = 26년 3월 167.7억 ÷ 720억 · 연간으로는 25년 15.7%(1,293.3 ÷ 8,228억), 26년 상반기 16.3%(712.1 ÷ 4,374억) · 상승 추세 = <b>크로스셀이 호텔 성장을 견인하는 근거</b> (추이 차트: 아래 비교 섹션)</span></div>
       </div>
-      <div class="tnote">18%+ 제안 근거 — 26년 전체 호텔 추정 <b>약 9,100억</b>(25년 8,228억 × 상반기 실적 성장률 +10.6%) × 18% ≈ <b>1,640억</b> = 자연 추세(연 ~1,530억, 상반기 YoY +18% 유지 가정) + 과제 효과. 침투율은 별도 KPI 미설정 상태의 상향 제안치.</div>
     </section>
 
     <!-- 1.6) +64% 성장 경로 (워터폴) -->
@@ -632,7 +659,7 @@
 
     <!-- 10) 일본패스 · 제주패스 컨셉 -->
     <section class="box dark">
-      <div class="sec-title"><div><h2>일본패스 · 제주패스 — 구조 &amp; 프로세스</h2><div class="st-sub">핵심 2개 시장의 항공권 구매자에게 크로스셀 혜택 3종을 묶어 제공하는 패스형 프로그램 (기획안)</div></div><span class="sec-tag">Concept · 기획중</span></div>
+      <div class="sec-title"><div><h2>일본패스 · 제주패스 — 구조 &amp; 프로세스 예시</h2><div class="st-sub">핵심 2개 시장의 항공권 구매자에게 크로스셀 혜택 3종을 묶어 제공하는 패스형 프로그램 (기획안)</div></div><span class="sec-tag">Concept · 기획중</span></div>
 
       <div class="pass-stat">왜 일본·제주인가 — 두 시장의 크로스셀 호텔 거래액은 월 <b>64.1억(일본 40.3 + 제주 23.8)</b>, 전체 크로스셀의 <b>약 54%</b></div>
 
@@ -692,7 +719,7 @@
 
     <!-- 11) 항공-티켓 크로스셀 전략 -->
     <section class="box dark">
-      <div class="sec-title"><div><h2>항공-티켓 크로스셀 전략</h2><div class="st-sub">호텔에 이은 두 번째 크로스셀 카테고리 — 유심·티켓 확장 구상</div></div><span class="sec-tag">Next · 구상중</span></div>
+      <div class="sec-title"><div><h2><span style="color:var(--coral)">NEW</span> · 항공-티켓 크로스셀 전략</h2><div class="st-sub">호텔에 이은 두 번째 크로스셀 카테고리 — 유심·티켓 확장 구상</div></div><span class="sec-tag">Next · 구상중</span></div>
       <div class="narr">
         <div class="n-item"><div class="n-no">1</div><div class="n-body">
           <div class="n-t">유심 · 티켓 위주로, 하나투어(와그)와 협력<span class="n-tag">CONCEPT</span></div>
