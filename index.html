@@ -56,10 +56,11 @@
   .giant .u { font-size:0.5em; }
   .giant-cap { font-size:15px; font-weight:800; color:var(--ink-2); margin-top:14px; }
   .giant-cap b { color:var(--ink); }
-  .substat { display:flex; gap:26px; flex-wrap:wrap; padding-top:14px; border-top:2px solid rgba(0,0,0,0.18); }
-  .substat .s { display:flex; flex-direction:column; gap:2px; }
-  .substat .s .sk { font-size:11px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-2); }
-  .substat .s .sv { font-size:22px; font-weight:900; letter-spacing:-0.02em; }
+  .substat { display:flex; gap:26px; flex-wrap:wrap; }
+  .substat-title { font-size:17px; font-weight:900; color:var(--ink); letter-spacing:-0.02em; border-top:2px solid rgba(0,0,0,0.18); padding-top:16px; margin-bottom:-6px; }
+  .substat .s { display:flex; flex-direction:column; gap:3px; }
+  .substat .s .sk { font-size:14px; font-weight:900; letter-spacing:-0.01em; color:var(--ink-2); }
+  .substat .s .sv { font-size:24px; font-weight:900; letter-spacing:-0.02em; }
   .substat .s .sv .pos { color:var(--coral); }
   .cbars { display:flex; flex-direction:column; gap:12px; }
   .cbars .ct { font-size:12px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-2); margin-bottom:2px; }
@@ -191,6 +192,12 @@
   .plan-group { border:1px solid var(--d-line); margin-bottom:12px; }
   .plan-head { display:flex; align-items:baseline; gap:14px; padding:14px 18px; background:rgba(255,255,255,0.04); border-bottom:1px solid var(--d-line); flex-wrap:wrap; }
   .plan-head .pg-dir { font-size:16px; font-weight:900; color:#fff; letter-spacing:-0.02em; }
+  .plan-head.on-head { background:rgba(3,199,90,0.14); border-left:5px solid var(--naver); }
+  .plan-head.on-head .pg-dir { color:var(--naver); }
+  .plan-head.plan-head2 { background:rgba(91,107,176,0.22); border-left:5px solid var(--blue); }
+  .plan-head.plan-head2 .pg-dir { color:#9DB0F0; }
+  .plan-group.ongoing { border-left:5px solid var(--naver); }
+  .pcard { border-left:5px solid var(--blue); }
   .plan-head .pg-sub { font-size:12px; font-weight:700; color:var(--d-mute); }
   .plan-row { display:grid; grid-template-columns:24px 1.5fr 1.2fr 1.3fr auto; gap:16px; padding:13px 18px; border-bottom:1px solid var(--d-line); align-items:center; }
   .plan-row:last-child { border-bottom:0; }
@@ -301,6 +308,7 @@
           <div class="giant-cap">25년 실적 <b>913억</b> → 26년 목표 <b>1,500억</b> · <b>+64% 성장</b> (메인 KPI)</div>
           <div class="giant-cap" style="margin-top:8px; font-size:13px;">*매출 기준(거래액 × 수수료 8%): <b>73억 → 120억</b></div>
         </div>
+        <div class="substat-title">현재 어느 정도 했나? — 상반기 실적</div>
         <div class="substat">
           <div class="s"><span class="sk">25년 1~6월 실적</span><span class="sv tnum">601.2억</span></div>
           <div class="s"><span class="sk">26년 1~6월 실적</span><span class="sv tnum">712.1억 <span class="pos">+18%</span></span></div>
@@ -482,15 +490,15 @@
       </div>
       <div class="tbl-note" style="margin:-6px 0 16px">* KPI는 26년 초 수립 당시 집계 기준(월별 동시예약) — 본문 현황(일정 매칭 기준: 국내 7.2% · 해외 9.6%)과 산정 방식이 다름</div>
 
-      <div class="plan-group">
-        <div class="plan-head"><span class="pg-dir">현재 진행 중</span><span class="pg-sub">상시 운영</span></div>
+      <div class="plan-group ongoing">
+        <div class="plan-head on-head"><span class="pg-dir">🟢 현재 진행 중</span><span class="pg-sub">상시 운영</span></div>
         <div class="plan-row"><span class="pr-no">1</span><span class="pr-task"><b>[일본 호텔 추천]</b> 일본 항공권 구매자에게 일본 인기 호텔 리스트 추천</span><span class="pr-meta">이벤트 페이지 · 일본 항공권 구매자</span><span class="pr-kpi">Braze 팝업으로 유입</span><span class="chips"><span class="chip on">운영중</span></span></div>
         <div class="plan-row"><span class="pr-no">2</span><span class="pr-task"><b>[제주 호텔 추천]</b> 제주 항공권 구매자에게 제주 인기 호텔 리스트 추천</span><span class="pr-meta">이벤트 페이지 · 제주 항공권 구매자</span><span class="pr-kpi">Braze 팝업으로 유입</span><span class="chips"><span class="chip on">운영중</span></span></div>
         <div class="plan-row"><span class="pr-no">3</span><span class="pr-task"><b>[가격비교 100원 적립]</b> 항공권 구매자가 호텔 3곳 가격비교 시 100원 적립 (출석체크형)</span><span class="pr-meta">호텔 가격비교 · 항공권 구매자</span><span class="pr-kpi">26.7.9 시작</span><span class="chips"><span class="chip on">운영중</span></span></div>
       </div>
 
       <div class="plan-group" style="border:0; margin-bottom:0">
-        <div class="plan-head" style="border:1px solid var(--d-line); margin-bottom:12px"><span class="pg-dir">예정</span><span class="pg-sub">기획 중 · 3개 과제</span></div>
+        <div class="plan-head plan-head2" style="border:1px solid var(--d-line); margin-bottom:12px"><span class="pg-dir">🔵 예정</span><span class="pg-sub">기획 중 · 3개 과제</span></div>
       </div>
       <div class="plan-cards">
         <div class="pcard">
@@ -632,31 +640,31 @@
     }
     // x labels
     const k=o.labelEvery||1;
-    o.labels.forEach((lb,i)=>{ if(i%k===0||i===n-1){ const x=padL+i*bw+bw/2; s+=`<text x="${x.toFixed(1)}" y="${H-9}" fill="#8E8E8E" font-size="12" text-anchor="middle">${lb}</text>`; }});
+    o.labels.forEach((lb,i)=>{ if(i%k===0||i===n-1){ const x=padL+i*bw+bw/2; s+=`<text x="${x.toFixed(1)}" y="${H-9}" fill="#A8A8A8" font-size="${o.xFont||12}" text-anchor="middle">${lb}</text>`; }});
     s+=`</svg>`; el.innerHTML=s;
   }
 
   // 5) 크로스셀 추이 — 예약수(막대·라벨) + 비율%(선·라벨)
-  combo('t-xsrate',{labels:XS_M, bars:XS_BOOK, barColor:'#5B6BB0', barLabels:true, barFmt:fmtComma, barFont:9,
-                    line:XS_RATE, lineColor:'#FE5A36', lineLabels:true, lineFmt:v=>v.toFixed(2)+'%', lineFont:10,
-                    hl:12, labelEvery:2});
+  combo('t-xsrate',{labels:XS_M, bars:XS_BOOK, barColor:'#5B6BB0', barLabels:true, barFmt:fmtComma, barFont:12,
+                    line:XS_RATE, lineColor:'#FE5A36', lineLabels:true, lineFmt:v=>v.toFixed(1)+'%', lineFont:14,
+                    hl:12, labelEvery:3, xFont:15});
   // 5) 크로스셀 호텔 거래액 — 막대·라벨
-  combo('t-xsgmv', {labels:XS_M, bars:XS_GMV, barColor:'#8E5AA8', barLabels:true, barFmt:v=>v.toFixed(0), barFont:10,
-                    hl:14, labelEvery:2});
+  combo('t-xsgmv', {labels:XS_M, bars:XS_GMV, barColor:'#8E5AA8', barLabels:true, barFmt:v=>v.toFixed(0), barFont:14,
+                    hl:14, labelEvery:3, xFont:15});
   // 6) 크로스셀 vs 전체 호텔 — 지수화 비교 (25.01=100, 동일 스케일)
   const TT18   = TT_AMT.slice(10);                                  // 25.01~26.06
   const IDX_TT = TT18.map(v=>Math.round(v/TT18[0]*1000)/10);
   const IDX_XS = XS_GMV.map(v=>Math.round(v/XS_GMV[0]*1000)/10);
   const SHARE  = XS_GMV.map((v,i)=>Math.round(v/TT18[i]*1000)/10);  // 비중 %
-  combo('t-cmp',  {labels:XS_M, bars:IDX_TT, barColor:'#2E9E4F', barLabels:true, barFmt:v=>Math.round(v), barFont:9,
-                   line:IDX_XS, lineColor:'#FE5A36', lineShared:true, lineLabels:true, lineLabelEvery:3, lineFmt:v=>Math.round(v), lineFont:10,
-                   labelEvery:3});
-  combo('t-share',{labels:XS_M, bars:SHARE, barColor:'#FE5A36', barLabels:true, barFmt:v=>v.toFixed(1)+'%', barFont:9,
-                   hl:14, labelEvery:3});
+  combo('t-cmp',  {labels:XS_M, bars:IDX_TT, barColor:'#2E9E4F', barLabels:true, barFmt:v=>Math.round(v), barFont:13,
+                   line:IDX_XS, lineColor:'#FE5A36', lineShared:true, lineLabels:true, lineLabelEvery:3, lineFmt:v=>Math.round(v), lineFont:14,
+                   labelEvery:3, xFont:15});
+  combo('t-share',{labels:XS_M, bars:SHARE, barColor:'#FE5A36', barLabels:true, barFmt:v=>v.toFixed(1)+'%', barFont:13,
+                   hl:14, labelEvery:3, xFont:15});
   // 6) 참고 — 전체 호텔 거래액(막대·라벨) + 예약수(선·라벨 4개월마다)
-  combo('t-total', {labels:TT_M, bars:TT_AMT, barColor:'#2E9E4F', barLabels:true, barFmt:v=>v, barFont:9,
-                    line:TT_RES, lineColor:'#6BA8E8', lineLabels:true, lineLabelEvery:4, lineFmt:fmtMan, lineFont:9.5,
-                    hl:16, labelEvery:3});
+  combo('t-total', {labels:TT_M, bars:TT_AMT, barColor:'#2E9E4F', barLabels:true, barFmt:v=>v, barFont:11.5,
+                    line:TT_RES, lineColor:'#6BA8E8', lineLabels:true, lineLabelEvery:4, lineFmt:fmtMan, lineFont:12,
+                    hl:16, labelEvery:3, xFont:13});
 </script>
 </body>
 </html>
