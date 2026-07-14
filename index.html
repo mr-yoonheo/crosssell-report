@@ -95,8 +95,21 @@
   .sec-title .st-sub { font-size:13px; font-weight:700; color:var(--d-mute); margin-top:4px; max-width:840px; line-height:1.5; }
   .sec-tag { font-size:12px; font-weight:800; letter-spacing:0.06em; color:var(--d-faint); text-transform:uppercase; white-space:nowrap; }
 
+  /* 정의 배너 */
+  .defbar { border:1px solid var(--d-line); background:rgba(255,255,255,0.045); padding:14px 18px; margin-bottom:14px; font-size:12.5px; font-weight:700; color:var(--d-mute); line-height:1.7; }
+  .defbar b { color:var(--d-text); }
+
+  /* 예정 과제 카드 */
+  .plan-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .pcard { border:1px solid var(--d-line); padding:22px; display:flex; flex-direction:column; gap:10px; background:rgba(255,255,255,0.02); }
+  .pcard .pc-head { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .pcard .pc-name { font-size:17px; font-weight:900; color:#fff; letter-spacing:-0.02em; }
+  .pcard .pc-desc { font-size:13px; font-weight:700; color:var(--d-mute); line-height:1.65; }
+  .pcard .pc-desc b { color:var(--d-text); }
+  .pcard .pc-why { margin-top:auto; padding-top:12px; border-top:1px solid var(--d-line); font-size:12px; font-weight:800; color:var(--sage); line-height:1.55; }
+
   /* COMPARE (국내 vs 해외) */
-  .cmpg { display:grid; grid-template-columns:repeat(2,1fr); gap:26px; }
+  .cmpg { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
   .cmp-metric .cm-k { font-size:12px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:var(--d-mute); margin-bottom:14px; }
   .cmp-bar { margin-bottom:12px; }
   .cmp-bar .cbl { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px; font-size:12.5px; font-weight:900; color:#fff; }
@@ -275,6 +288,8 @@
     </div>
   </div>
 
+  <div class="defbar">📌 <b>이 자료의 '크로스셀' 정의</b> — 항공권 구매자가 <b>같은 여행 일정</b>으로 네이버 호텔을 예약한 경우만 집계 (왕복: 호텔 체크인 ≥ 항공 출발일 & 체크아웃 ≤ 귀환일+3일 · 편도/다구간: 체크아웃이 출발일~+30일 사이). 항공은 취소 제외, 호텔은 예약완료(취소 제외)·원화 결제 기준 · <b>크로스셀 호텔 거래액</b> = 이렇게 매칭된 호텔 예약의 결제액 합계(항공 거래액 미포함) · 데이터: 사내 예약 DB, 2026.07.10 추출</div>
+
   <div class="grid">
 
     <!-- 1) HERO : KPI (유지) -->
@@ -283,72 +298,64 @@
         <span class="blabel">연간 크로스셀 호텔 거래액</span>
         <div>
           <div class="giant tnum">913<span class="u">억</span><span class="arw">→</span><span class="tg">1,500<span class="u">억</span></span></div>
-          <div class="giant-cap">25년 <b>913억</b> → 26년 목표 <b>1,500억</b> · <b>+64% 성장</b> (메인 KPI)</div>
+          <div class="giant-cap">25년 실적 <b>913억</b> → 26년 목표 <b>1,500억</b> · <b>+64% 성장</b> (메인 KPI)</div>
+          <div class="giant-cap" style="margin-top:8px; font-size:13px;">*매출 기준(거래액 × 수수료 8%): <b>73억 → 120억</b></div>
         </div>
         <div class="substat">
-          <div class="s"><span class="sk">26년 1~6월 누적</span><span class="sv tnum">712.1억</span></div>
-          <div class="s"><span class="sk">목표 달성률</span><span class="sv tnum"><span class="pos">47.5%</span></span></div>
-          <div class="s"><span class="sk">전체 호텔 內 비중</span><span class="sv tnum">6%</span></div>
+          <div class="s"><span class="sk">25년 1~6월 실적</span><span class="sv tnum">601.2억</span></div>
+          <div class="s"><span class="sk">26년 1~6월 실적</span><span class="sv tnum">712.1억 <span class="pos">+18%</span></span></div>
+          <div class="s"><span class="sk">목표 달성률 (712.1÷1,500)</span><span class="sv tnum"><span class="pos">47.5%</span></span></div>
         </div>
       </div>
       <div class="cbars">
-        <div class="ct">26년 목표 달성 현황 — 크로스셀 호텔 거래액</div>
-        <div class="cb me"><div class="cl"><span class="ck">상반기 누적 712.1억 / 목표 1,500억</span><span class="cv tnum">47.5%</span></div><div class="ctrack"><i style="width:47.5%"></i></div></div>
-        <div class="ct" style="margin-top:8px">크로스셀 예약 비율 — 현재(26.1월 · 동시예약 집계) vs 26년 목표</div>
-        <div class="cb"><div class="cl"><span class="ck">국내 현재 (26.1)</span><span class="cv tnum">5.8%</span></div><div class="ctrack"><i style="width:58%"></i></div></div>
-        <div class="cb me"><div class="cl"><span class="ck">국내 목표</span><span class="cv tnum">7%↑</span></div><div class="ctrack"><i style="width:70%"></i></div></div>
-        <div class="cb"><div class="cl"><span class="ck">해외 현재 (26.1)</span><span class="cv tnum">8.8%</span></div><div class="ctrack"><i style="width:88%"></i></div></div>
-        <div class="cb me"><div class="cl"><span class="ck">해외 목표</span><span class="cv tnum">10%↑</span></div><div class="ctrack"><i style="width:100%"></i></div></div>
-        <div style="font-size:10.5px; font-weight:700; color:var(--ink-2); margin-top:2px; line-height:1.5;">* 국내 5.8%·해외 8.8%는 26년 1월 기준 월별 동시예약 집계(보고 KPI 기준) · 누적 712.1억과 달성률은 일정 매칭 기준 집계</div>
+        <div class="ct">26년 목표 달성 현황</div>
+        <div class="cb me"><div class="cl"><span class="ck">26년 상반기 누적 712.1억 / 목표 1,500억</span><span class="cv tnum">47.5%</span></div><div class="ctrack"><i style="width:47.5%"></i></div></div>
+        <div class="ct" style="margin-top:8px">상반기 실적 비교 — 크로스셀 호텔 거래액 (1~6월 합계)</div>
+        <div class="cb"><div class="cl"><span class="ck">25년 1~6월</span><span class="cv tnum">601.2억</span></div><div class="ctrack"><i style="width:84.4%"></i></div></div>
+        <div class="cb me"><div class="cl"><span class="ck">26년 1~6월 (+18%)</span><span class="cv tnum">712.1억</span></div><div class="ctrack"><i style="width:100%"></i></div></div>
+        <div style="font-size:10.5px; font-weight:700; color:var(--ink-2); margin-top:2px; line-height:1.5;">* 25년 913억·목표 1,500억은 KPI 수립 시 집계 기준 · 상반기 실적(601.2 / 712.1억)과 달성률은 여행 일정 매칭 기준(상단 정의) · 매출 = 거래액 × 평균 수수료 8%</div>
       </div>
     </section>
 
     <!-- 2) 크로스셀 현황 요약 -->
     <section class="box dark">
-      <div class="sec-title"><div><h2>크로스셀 현황 요약</h2><div class="st-sub">두 가지 측정 기준으로 본 크로스셀 규모 · 25년 평균 vs 26년 상반기 평균</div></div><span class="sec-tag">Summary</span></div>
+      <div class="sec-title"><div><h2>크로스셀 현황 요약</h2><div class="st-sub">기준: 여행 일정 매칭 (상단 정의 참조) · 25년 평균 vs 26년 상반기 평균, 그리고 국내·해외 구분</div></div><span class="sec-tag">Summary</span></div>
 
-      <div class="tier"><span class="t-name"><i style="background:var(--coral)"></i>정직한 기준</span><span class="t-def">여행 일정 그대로 — 항공권과 동일 여행 일정에 호텔 예약이 있는 경우만 인정 (일정 매칭)</span></div>
       <div class="grid kpis">
-        <div class="kpi"><span class="kk">25년 월평균</span><span class="kv tnum">8.52<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 107.8억</span><span class="kd">연간 크로스셀 호텔 거래액 1,293억</span></div>
-        <div class="kpi now"><span class="kk">26년 1~6월 월평균</span><span class="kv tnum">8.26<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 118.7억</span><span class="kd">상반기 크로스셀 호텔 거래액 712.1억 · 전년 월평균 대비 +10%</span></div>
+        <div class="kpi"><span class="kk">25년 월평균 (25.01~12)</span><span class="kv tnum">8.52<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 107.8억</span><span class="kd">비율 = 12개월 월별 비율의 단순평균 · 거래액 = 연간 1,293.3억 ÷ 12개월</span></div>
+        <div class="kpi now"><span class="kk">26년 상반기 월평균 (26.01~06)</span><span class="kv tnum">8.26<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 118.7억</span><span class="kd">비율 = 6개월 월별 비율의 단순평균 · 거래액 = 상반기 712.1억 ÷ 6개월 · 전년 상반기(601.2억) 대비 +18%</span></div>
       </div>
 
-      <div class="tier second"><span class="t-name"><i style="background:var(--grey)"></i>넓은 범위</span><span class="t-def">항공 예약자가 1분기(90일) 내에 호텔을 예약한 경우 — 여행 일정·지역 무관</span></div>
-      <div class="grid kpis">
-        <div class="kpi"><span class="kk">25년 월평균</span><span class="kv tnum">11.46<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 146.2억</span><span class="kd">연간 크로스셀 호텔 거래액 1,755억</span></div>
-        <div class="kpi"><span class="kk">26년 1~6월 월평균</span><span class="kv tnum">10.38<small>%</small></span><span class="kg tnum"><small>크로스셀 호텔 거래액</small>월평균 149.7억</span><span class="kd">상반기 크로스셀 호텔 거래액 897.9억</span></div>
-      </div>
-
-      <div class="tnote">⚠ 26.4~6월 코호트는 <b>여행일 미도래(정직한 기준)</b>·<b>90일 윈도우 미경과(넓은 범위)</b>로 비율이 실제보다 낮게 집계될 수 있음. 성숙 코호트(25년) 기준 — 정직한 기준 연중 8.0~9.2% · 넓은 범위 10.8~12.1%.</div>
-    </section>
-
-    <!-- 3) 국내 vs 해외 크로스셀 현황 -->
-    <section class="box dark">
-      <div class="sec-title"><div><h2>국내 · 해외 크로스셀 현황</h2><div class="st-sub">항공 노선 기준(국내선/국제선) 크로스셀 비율 · 크로스셀 호텔 거래액 (26년 1~6월 평균)</div></div><span class="sec-tag">26.01–06 평균 · Domestic &amp; Overseas</span></div>
+      <div class="tier second"><span class="t-name"><i style="background:var(--coral)"></i>국내 · 해외 구분</span><span class="t-def">항공 노선 기준 — 국내선 구매자 vs 국제선 구매자 · 26년 1~6월</span></div>
       <div class="cmpg">
         <div class="cmp-metric">
-          <div class="cm-k">크로스셀 비율 (상반기 합산 기준)</div>
-          <div class="cmp-bar dom"><div class="cbl"><span>국내 (58,620 / 814,301명)</span><span class="tnum">7.20%</span></div><div class="cbt"><i style="width:75.3%"></i></div></div>
-          <div class="cmp-bar ov"><div class="cbl"><span>해외 (67,767 / 709,023명)</span><span class="tnum">9.56%</span></div><div class="cbt"><i style="width:100%"></i></div></div>
+          <div class="cm-k">크로스셀 비율 (= 크로스셀 유저 ÷ 항공 구매자)</div>
+          <div class="cmp-bar dom"><div class="cbl"><span>국내 (58,620 ÷ 814,301명)</span><span class="tnum">7.20%</span></div><div class="cbt"><i style="width:75.3%"></i></div></div>
+          <div class="cmp-bar ov"><div class="cbl"><span>해외 (67,767 ÷ 709,023명)</span><span class="tnum">9.56%</span></div><div class="cbt"><i style="width:100%"></i></div></div>
         </div>
         <div class="cmp-metric">
           <div class="cm-k">크로스셀 호텔 거래액 (월평균)</div>
           <div class="cmp-bar dom"><div class="cbl"><span>국내 (월평균 12,822건)</span><span class="tnum">31.2억</span></div><div class="cbt"><i style="width:35.1%"></i></div></div>
           <div class="cmp-bar ov"><div class="cbl"><span>해외 (월평균 15,176건)</span><span class="tnum">88.8억</span></div><div class="cbt"><i style="width:100%"></i></div></div>
         </div>
+        <div class="cmp-metric">
+          <div class="cm-k">객단가 (= 거래액 ÷ 유저수)</div>
+          <div class="cmp-bar dom"><div class="cbl"><span>국내</span><span class="tnum">32만원</span></div><div class="cbt"><i style="width:40.5%"></i></div></div>
+          <div class="cmp-bar ov"><div class="cbl"><span>해외</span><span class="tnum">79만원</span></div><div class="cbt"><i style="width:100%"></i></div></div>
+        </div>
       </div>
       <div class="trend-legend" style="margin-top:2px">
-        <span><span class="sw" style="background:#6BA8E8"></span>국내</span>
-        <span><span class="sw" style="background:var(--coral)"></span>해외</span>
+        <span><span class="sw" style="background:#6BA8E8"></span>국내 (국내선 구매자)</span>
+        <span><span class="sw" style="background:var(--coral)"></span>해외 (국제선 구매자)</span>
       </div>
       <div class="insight">
-        <div class="in-t">Insight (26년 1~6월 · 일정 매칭 기준)</div>
+        <div class="in-t">Insight (26년 1~6월)</div>
         <ul>
           <li>해외 크로스셀 비율(9.56%)이 국내(7.20%) 대비 <b>약 1.3배</b> → 해외 여행자의 <b>항공-호텔 결합 니즈가 강함</b></li>
-          <li>크로스셀 호텔 거래액은 월평균 해외 88.8억 vs 국내 31.2억으로 <b>해외가 약 2.8배</b> → 해외가 매출 기여의 핵심</li>
-          <li>객단가(거래액÷유저수)도 해외 79만원 vs 국내 32만원으로 <b>약 2.5배</b></li>
+          <li>거래액(해외 2.8배)·객단가(해외 2.5배) 모두 해외 우위 → <b>해외가 매출 기여의 핵심</b></li>
         </ul>
       </div>
+      <div class="tnote">⚠ 26년 4~6월에 항공권을 산 사람들은 아직 여행 전이라 호텔 예약이 계속 추가되는 중 → 26년 수치는 <b>앞으로 더 올라갈 수 있는 잠정치</b>. 25년 확정치 기준 비율은 연중 8.0~9.2%.</div>
     </section>
 
     <!-- 4) 해외 국가별 크로스셀 현황 -->
@@ -397,12 +404,11 @@
         <span><span class="sw" style="background:#8E5AA8"></span>크로스셀 호텔 거래액(억)</span>
       </div>
       <div class="insight" style="margin-top:20px">
-        <div class="in-t">측정 기준 — 여행 일정 매칭 (실제 같은 여행만 인정)</div>
+        <div class="in-t">차트 읽는 법</div>
         <ul>
-          <li><b>분모</b> = 해당 월 항공권 구매자(취소 제외) 고유 nidno · <b>분자</b> = 그 중 일정 매칭 조건으로 호텔 예약(OK·KRW)한 nidno</li>
-          <li><b>왕복(RT)</b>: 호텔 체크인 ≥ 항공 출발일, 체크아웃 ≤ 귀환일+3일 · <b>편도/다구간</b>: 체크아웃 ∈ [출발일, 출발일+30일] · 호텔 지역 무관</li>
-          <li>25년 연중 <b>8.0~9.2%</b> 안정 · 최고 26.01(9.27% · 150억) · 25년 연간 크로스셀 호텔 거래액 <b>1,293억</b> (일정 매칭 기준)</li>
-          <li>26.4~6월은 <b>미성숙 코호트</b>(여행 미도래)로 수치가 향후 상향 갱신됨 · 단순 '구매 이후 예약'(검증 없음)은 24%대로 부풀지만 <b>일정 매칭 8%대가 정확한 베이스라인</b></li>
+          <li>막대 하나 = <b>그 달에 항공권을 산 사람들</b>의 크로스셀 결과. 예: 25.07 = 25년 7월 항공권 구매자 244,636명 중 22,530명이 같은 여행 일정으로 호텔 예약 → <b>9.21%</b></li>
+          <li>25년 연중 <b>8.0~9.2%</b>로 안정적 · 최고는 26.01 (비율 9.27% · 거래액 150.2억)</li>
+          <li>⚠ 26.4~6월 막대는 아직 여행을 안 간 구매자가 많아 낮게 표시됨 — 호텔 예약이 쌓이면서 값이 계속 올라가는 <b>잠정치</b></li>
         </ul>
       </div>
     </section>
@@ -440,15 +446,7 @@
         <span><span class="sw" style="background:#2E9E4F"></span>거래액(억)</span>
         <span><span class="ln" style="border-color:#6BA8E8"></span>예약수(만)</span>
       </div>
-      <div class="tnote">25년 연간 호텔 거래액 <b>8,228억</b>(취소 제외) · 이 중 크로스셀 호텔 거래액 <b>1,293억(약 15.7%)</b> — 일정 매칭 기준. 위키 보고치(13,245억·913억·6%)는 <b>취소 포함·동시예약 기준</b>이라 수치가 다름. 거래액 최고치는 <b>25.07(880억)</b>, 26.06은 855억으로 역대 2위 수준.</div>
-    </section>
-
-    <!-- 7) 크로스셀 고객 객단가 -->
-    <section class="box dark">
-      <div class="sec-title"><div><h2>크로스셀 고객 객단가</h2><div class="st-sub">크로스셀 호텔 거래액 ÷ 크로스셀 유저수 · 국내 vs 해외 (26년 1~6월)</div></div><span class="sec-tag">26.01–06 · Per Customer</span></div>
-      <div class="mb me"><div class="ml"><span>해외 크로스셀 고객</span><span class="tnum">79만원</span></div><div class="mtrack"><i style="width:100%"></i></div></div>
-      <div class="mb me"><div class="ml"><span>국내 크로스셀 고객</span><span class="tnum">32만원</span></div><div class="mtrack"><i style="width:40.5%; background:#6BA8E8"></i></div></div>
-      <div class="ampc-note">해외 크로스셀 고객의 객단가가 국내 대비 <b>약 2.5배</b> 높아, 매출 기여도가 큼</div>
+      <div class="tnote">25년 연간 호텔 거래액 <b>8,228억</b> 중 크로스셀 호텔 거래액 <b>1,293억 = 15.7%</b>. 최고 매출 월은 <b>25.07(880억)</b>, 26.06(855억)은 역대 2위. ※ 본 자료의 호텔 거래액은 모두 <b>예약완료(취소 제외)·원화 기준</b> — 취소 포함으로 집계하는 타 보고서 수치와는 다를 수 있음.</div>
     </section>
 
     <!-- 8) Insight — 접근 방향 -->
@@ -482,6 +480,7 @@
         <div class="kc"><div class="kc-k">메인 KPI · 연간 크로스셀 호텔 거래액</div><div class="kc-v tnum"><span class="pos">1,500억</span> <small>(25년 913억 대비 +64%)</small></div></div>
         <div class="kc"><div class="kc-k">보조 KPI · 크로스셀 비율</div><div class="kc-v tnum">국내 <span class="pos">7%↑</span> · 해외 <span class="pos">10%↑</span></div></div>
       </div>
+      <div class="tbl-note" style="margin:-6px 0 16px">* KPI는 26년 초 수립 당시 집계 기준(월별 동시예약) — 본문 현황(일정 매칭 기준: 국내 7.2% · 해외 9.6%)과 산정 방식이 다름</div>
 
       <div class="plan-group">
         <div class="plan-head"><span class="pg-dir">현재 진행 중</span><span class="pg-sub">상시 운영</span></div>
@@ -490,13 +489,27 @@
         <div class="plan-row"><span class="pr-no">3</span><span class="pr-task"><b>[가격비교 100원 적립]</b> 항공권 구매자가 호텔 3곳 가격비교 시 100원 적립 (출석체크형)</span><span class="pr-meta">호텔 가격비교 · 항공권 구매자</span><span class="pr-kpi">26.7.9 시작</span><span class="chips"><span class="chip on">운영중</span></span></div>
       </div>
 
-      <div class="plan-group">
-        <div class="plan-head"><span class="pg-dir">예정</span><span class="pg-sub">기획 중</span></div>
-        <div class="plan-row"><span class="pr-no">4</span><span class="pr-task"><b>[시크릿 호텔]</b> 항공권 구매자 대상 폐쇄형 시크릿 호텔 페이지</span><span class="pr-meta">시크릿 페이지 · 항공권 구매자</span><span class="pr-kpi">폐쇄형 특가로 전환율 제고</span><span class="chips"><span class="chip plan">기획중</span></span></div>
-        <div class="plan-row"><span class="pr-no">5</span><span class="pr-task"><b>[일본패스 · 제주패스]</b> 일본/제주 항공 구매자 대상 호텔 구매 시 추가 적립 + 골드등급 체험 + 매달 추첨 1명 100만원 지급</span><span class="pr-meta">패스 프로그램 · 일본/제주 항공권 구매자</span><span class="pr-kpi">핵심 시장(일본·제주) 집중 공략</span><span class="chips"><span class="chip plan">기획중</span></span></div>
-        <div class="plan-row"><span class="pr-no">6</span><span class="pr-task"><b>[해외 패스 확대]</b> 일본/제주 패스 검증 후 중국 · 베트남 패스로 라인업 확대</span><span class="pr-meta">패스 프로그램 · 중국/베트남 항공권 구매자</span><span class="pr-kpi">해외 패스 라인업 확장</span><span class="chips"><span class="chip plan">기획중</span></span></div>
+      <div class="plan-group" style="border:0; margin-bottom:0">
+        <div class="plan-head" style="border:1px solid var(--d-line); margin-bottom:12px"><span class="pg-dir">예정</span><span class="pg-sub">기획 중 · 3개 과제</span></div>
       </div>
-      <div class="plan-legend">상태: <span class="chip on" style="padding:1px 8px">운영중</span> <span class="chip plan" style="padding:1px 8px">기획중</span></div>
+      <div class="plan-cards">
+        <div class="pcard">
+          <div class="pc-head"><span class="pc-name">시크릿 호텔</span><span class="chip plan">기획중</span></div>
+          <div class="pc-desc">항공권 구매자에게만 노출되는 <b>폐쇄형 호텔 특가관</b>. 항공 예약완료자 대상 전용 링크·배너로만 진입할 수 있게 하고, 일반 노출가보다 낮은 '폐쇄가'를 제공해 예약을 유도.</div>
+          <div class="pc-why">기대 효과 — 골든타임(구매 직후) 안의 강력한 전환 장치 · 폐쇄형이라 가격 노출 부담 없이 특가 운영 가능</div>
+        </div>
+        <div class="pcard">
+          <div class="pc-head"><span class="pc-name">일본패스 · 제주패스</span><span class="chip plan">기획중</span></div>
+          <div class="pc-desc">일본/제주 항공권 구매자에게 <b>자동 발급되는 혜택 패스</b>. ① 호텔 구매 시 추가 적립 ② 트래블클럽 골드등급 체험 ③ 매달 추첨 1명 100만원 지급.</div>
+          <div class="pc-why">기대 효과 — 크로스셀 호텔 거래액의 54%(일본+제주)인 핵심 2개 시장 집중 공략 · 상세 구조는 아래 섹션 참조</div>
+        </div>
+        <div class="pcard">
+          <div class="pc-head"><span class="pc-name">해외 패스 확대</span><span class="chip plan">기획중</span></div>
+          <div class="pc-desc">일본·제주패스 성과 검증 후 <b>중국 · 베트남 패스로 라인업 확대</b>. 베트남은 크로스셀 비율 11.9%로 최상위(결합 니즈 검증), 중국은 모수 대비 비율 5.3%로 개선 여지가 큰 시장.</div>
+          <div class="pc-why">기대 효과 — 검증된 패스 모델의 수평 확장으로 해외 크로스셀 커버리지 확대</div>
+        </div>
+      </div>
+      <div class="plan-legend" style="margin-top:14px">상태: <span class="chip on" style="padding:1px 8px">운영중</span> <span class="chip plan" style="padding:1px 8px">기획중</span></div>
     </section>
 
     <!-- 10) 일본패스 · 제주패스 컨셉 -->
@@ -546,6 +559,18 @@
         <div class="pf-step"><div class="pf-no">STEP 4</div><div class="pf-t">월간 추첨 100만원</div><div class="pf-d">패스 이용자 중 매달 1명 — <b>참여 지속·재방문 훅</b></div></div>
       </div>
       <div class="pf-note">· 골든타임(항공 구매 후 30일, 크로스셀의 84% 발생 구간) 안에서 혜택이 작동하도록 설계 · 적립률·체험 기간 등 세부 스킴은 기획 확정 후 업데이트</div>
+    </section>
+
+    <!-- 11) 항공-티켓 크로스셀 전략 -->
+    <section class="box dark">
+      <div class="sec-title"><div><h2>항공-티켓 크로스셀 전략</h2><div class="st-sub">호텔에 이은 두 번째 크로스셀 카테고리 — 유심·티켓 확장 구상</div></div><span class="sec-tag">Next · 구상중</span></div>
+      <div class="narr">
+        <div class="n-item"><div class="n-no">+</div><div class="n-body">
+          <div class="n-t">유심 · 티켓 위주로, 하나투어(와그)와 협력<span class="n-tag">CONCEPT</span></div>
+          <div class="n-d">현재 티켓 카테고리는 상품 수가 많지 않지만, 여행 필수재인 <b>유심(eSIM) · 입장권 티켓</b> 위주로 <b>하나투어(와그)와 협력</b>하여 항공-티켓 크로스셀 전략을 구상 중. 항공권 예약으로 확보한 여정 정보(목적지·출발일)를 활용해 해당 목적지의 유심·티켓을 연계 추천하는 구조로, 호텔 크로스셀과 동일한 <b>골든타임 접점(예약완료 직후)</b>을 활용한다.</div>
+        </div></div>
+      </div>
+      <div class="plan-legend" style="margin-top:14px">카테고리: <span class="chip mid" style="padding:1px 10px">유심 · eSIM</span> <span class="chip mid" style="padding:1px 10px">입장권 · 티켓</span> &nbsp;·&nbsp; 파트너: <span class="chip lo" style="padding:1px 10px">하나투어 (와그)</span> &nbsp;·&nbsp; 상태: <span class="chip plan" style="padding:1px 10px">구상중</span></div>
     </section>
 
   </div>
