@@ -100,6 +100,12 @@
   .tier .t-name i { font-style:normal; display:inline-block; width:10px; height:10px; margin-right:8px; }
   .tier .t-def { font-size:12px; font-weight:700; color:var(--d-mute); }
   .tier.second { margin-top:26px; }
+  .keyp { display:flex; flex-direction:column; gap:12px; margin-top:12px; }
+  .keyp .kp { display:flex; gap:14px; align-items:flex-start; border:1px solid var(--d-line); background:rgba(255,255,255,0.03); padding:16px 18px; }
+  .keyp .kp-no { flex-shrink:0; width:30px; height:30px; border-radius:50%; background:var(--coral); color:var(--ink); font-weight:900; display:flex; align-items:center; justify-content:center; font-size:15px; }
+  .keyp .kp-t { font-size:17px; font-weight:800; color:var(--d-text); letter-spacing:-0.02em; line-height:1.55; }
+  .keyp .kp-t b { color:#fff; font-weight:900; }
+  .keyp .kp-t em { font-style:normal; color:var(--coral); font-weight:900; }
 
   /* SECTION TITLE */
   .sec-title { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:22px; flex-wrap:wrap; }
@@ -352,7 +358,21 @@
 
     <!-- 1.5) 측정 논리 & 세그먼트별 목표 -->
     <section class="box dark">
-      <div class="sec-title"><div><h2>측정 논리 &amp; 세그먼트별 목표</h2><div class="st-sub">크로스셀율이 거래액으로, 다시 수수료(매출)로 이어지는 구조 — 세그먼트별 상향 목표 제안</div></div><span class="sec-tag">Logic &amp; Targets</span></div>
+      <div class="sec-title"><div><h2>26년 목표 — 두 축으로 관리</h2><div class="st-sub">① 거래액(규모)과 ② 크로스셀율(%)은 <b style="color:var(--d-text)">별개 지표</b> — 각각 목표를 두고 관리</div></div><span class="sec-tag">Targets · 2 Axes</span></div>
+
+      <div class="tier"><span class="t-name"><i style="background:var(--coral)"></i>축 1 · 거래액 (규모)</span><span class="t-def">얼마나 파는가 — 1,500억(+64%)은 거래액 성장 목표이며, 크로스셀율(%)과는 별개 지표</span></div>
+      <div class="kpi-callout">
+        <div class="kc"><div class="kc-k">크로스셀 호텔 거래액</div><div class="kc-v tnum">913억 → <span class="pos">1,500억</span> <small>(+64%)</small></div></div>
+        <div class="kc"><div class="kc-k">크로스셀 매출 (거래액 × 수수료 8%)</div><div class="kc-v tnum">73억 → <span class="pos">120억</span></div></div>
+      </div>
+
+      <div class="tier second"><span class="t-name"><i style="background:#6BA8E8"></i>축 2 · 크로스셀율 (%)</span><span class="t-def">얼마나 잘 붙이는가 — 기준 두 개로 측정</span></div>
+      <div class="kpi-callout">
+        <div class="kc"><div class="kc-k">기준 A · 예약자 기준 (사람 수)</div><div class="kc-v" style="font-size:15px; line-height:1.55;">크로스셀 구매자 ÷ 항공 구매자<br/><small>아래 세그먼트별 목표는 이 기준</small></div></div>
+        <div class="kc"><div class="kc-k">기준 B · 거래액 기준 (침투율)</div><div class="kc-v" style="font-size:15px; line-height:1.55;">크로스셀 호텔 거래액 ÷ 전체 호텔 거래액<br/><small class="tnum">14.6%(25.01) → <b style="color:var(--coral)">23.3%(26.03)</b> 상승 중 — 크로스셀이 호텔 성장 견인</small></div></div>
+      </div>
+
+      <div class="dt" style="margin-top:22px">측정 논리 <span class="dtag">율 → 거래액 → 수수료</span></div>
       <div class="pflow three">
         <div class="pf-step"><div class="pf-no">STEP 1</div><div class="pf-t">크로스셀율 ↑</div><div class="pf-d">세그먼트별 <b>목표 상향</b> — 사람 수 기준 비율을 끌어올림</div></div>
         <div class="pf-arrow">→</div>
@@ -360,16 +380,17 @@
         <div class="pf-arrow">→</div>
         <div class="pf-step"><div class="pf-no">STEP 3</div><div class="pf-t">수수료(매출) 적용</div><div class="pf-d"><b>거래액 × 수수료율</b> = 수수료 · 호텔 8% / 티켓 1% (할인 3%→1%)</div></div>
       </div>
-      <div class="dt" style="margin-top:26px">세그먼트별 목표 <span class="dtag">26년 상반기 현재 → 목표 (목표 %는 상향 제안치)</span></div>
+      <div class="dt" style="margin-top:26px">세그먼트별 크로스셀율 목표 <span class="dtag">기준 A (예약자 기준) · 26년 상반기 현재 → 상향 제안</span></div>
       <div class="overflow-x"><table>
         <thead><tr><th>세그먼트</th><th>크로스셀율 현재 → 목표</th><th class="num">거래액 성장</th><th class="num">수수료 성장</th></tr></thead>
         <tbody>
           <tr><td class="cty">호텔 · 국내</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">7.2% → <span style="color:var(--coral)">9.0%</span></td><td class="num tnum">+46.9억</td><td class="num tnum">+3.8억</td></tr>
           <tr><td class="cty">호텔 · 해외</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">9.56% → <span style="color:var(--coral)">12.0%</span></td><td class="num tnum">+136.7억</td><td class="num tnum">+10.9억</td></tr>
           <tr><td class="cty">티켓 · 해외</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">0% → <span style="color:var(--coral)">15%</span></td><td class="num tnum">+53.2억</td><td class="num tnum">+0.5억</td></tr>
+          <tr style="background:rgba(254,90,54,0.07)"><td class="cty" style="color:var(--coral)">전체</td><td class="tnum" style="font-weight:900; color:#fff; font-size:16px;">8.3% → <span style="color:var(--coral)">10.4%</span></td><td class="num tnum">+236.8억</td><td class="num tnum">+15.2억</td></tr>
         </tbody>
       </table></div>
-      <div class="tbl-note">· 거래액·수수료 성장 = 위 산식(율 × 항공 구매자 × 객단가, × 수수료율)으로 환산한 추정치 · 크로스셀율 = 사람 수 기준(일정 매칭) · 티켓 현재 0%는 서비스 개시 전 기준</div>
+      <div class="tbl-note">· 거래액·수수료 성장 = 위 산식(율 × 상반기 항공 구매자 × 객단가, × 수수료율)으로 환산한 반기 기준 추정치 · 크로스셀율 = 사람 수 기준(일정 매칭) · 티켓 현재 0%는 서비스 개시 전, 객단가 5만원 가정 · 전체 율(8.3→10.4%)은 호텔 세그먼트의 구매자 가중 환산(티켓 제외), 거래액·수수료는 3개 세그먼트 합계</div>
       <div class="pass-stat" style="margin-top:14px; margin-bottom:0; border-color:rgba(217,138,43,0.6); background:rgba(217,138,43,0.08)">외형(거래액)은 티켓도 키우지만, <b style="color:#E8A54B">수익(수수료)은 호텔이 견인</b> — 수수료율 호텔 8% vs 티켓 1%</div>
     </section>
 
@@ -380,22 +401,22 @@
         <svg viewBox="0 0 1000 370" preserveAspectRatio="xMidYMid meet" role="img" aria-label="성장 경로 워터폴">
           <line x1="20" y1="320" x2="980" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
           <line x1="150" y1="149.6" x2="190" y2="149.6" stroke="#8E8E8E" stroke-dasharray="4 4"/>
-          <line x1="310" y1="102.9" x2="350" y2="102.9" stroke="#8E8E8E" stroke-dasharray="4 4"/>
-          <line x1="470" y1="78.6" x2="510" y2="78.6" stroke="#8E8E8E" stroke-dasharray="4 4"/>
-          <line x1="630" y1="56.2" x2="670" y2="56.2" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <line x1="310" y1="118.2" x2="350" y2="118.2" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <line x1="470" y1="90.4" x2="510" y2="90.4" stroke="#8E8E8E" stroke-dasharray="4 4"/>
+          <line x1="630" y1="57.5" x2="670" y2="57.5" stroke="#8E8E8E" stroke-dasharray="4 4"/>
           <line x1="790" y1="40" x2="830" y2="40" stroke="#8E8E8E" stroke-dasharray="4 4"/>
           <rect x="30" y="149.6" width="120" height="170.4" fill="#2E9E4F"/>
-          <rect x="190" y="102.9" width="120" height="46.7" fill="#2E9E4F"/>
-          <rect x="350" y="78.6" width="120" height="24.3" fill="#2E9E4F"/>
-          <rect x="510" y="56.2" width="120" height="22.4" fill="#2E9E4F"/>
-          <rect x="670" y="40" width="120" height="16.2" fill="#D98A2B"/>
-          <rect x="830" y="56.2" width="120" height="263.8" fill="#2E9E4F"/>
-          <rect x="830" y="40" width="120" height="16.2" fill="#D98A2B"/>
+          <rect x="190" y="118.2" width="120" height="31.4" fill="#2E9E4F"/>
+          <rect x="350" y="90.4" width="120" height="27.8" fill="#2E9E4F"/>
+          <rect x="510" y="57.5" width="120" height="32.9" fill="#2E9E4F"/>
+          <rect x="670" y="40" width="120" height="17.5" fill="#D98A2B"/>
+          <rect x="830" y="57.5" width="120" height="262.5" fill="#2E9E4F"/>
+          <rect x="830" y="40" width="120" height="17.5" fill="#D98A2B"/>
           <text x="90" y="138" font-size="18" font-weight="900" fill="#ECECEC" text-anchor="middle">913억</text>
-          <text x="250" y="92" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+250</text>
-          <text x="410" y="68" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+130</text>
-          <text x="570" y="46" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+120</text>
-          <text x="730" y="30" font-size="17" font-weight="800" fill="#E8A54B" text-anchor="middle">+87</text>
+          <text x="250" y="107" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+168</text>
+          <text x="410" y="79" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+149</text>
+          <text x="570" y="46" font-size="17" font-weight="800" fill="#ECECEC" text-anchor="middle">+176</text>
+          <text x="730" y="30" font-size="17" font-weight="800" fill="#E8A54B" text-anchor="middle">+94</text>
           <text x="890" y="28" font-size="20" font-weight="900" fill="#FFFFFF" text-anchor="middle">1,500억</text>
           <text x="90" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">25년 실적</text>
           <text x="250" y="350" font-size="16" font-weight="700" fill="#A8A8A8" text-anchor="middle">성수기·기존</text>
@@ -408,9 +429,9 @@
       <div class="trend-legend">
         <span><span class="sw" style="background:#2E9E4F"></span>호텔 (성수기 · 시크릿몰 · 지역패스)</span>
         <span><span class="sw" style="background:#D98A2B"></span>티켓 (입장권 · 유심)</span>
-        <span style="color:var(--coral); font-weight:800;">※ 단계별 금액은 예시 — 실제 기여는 데이터로 확정 필요</span>
+        <span style="color:var(--coral); font-weight:800;">※ 단계별 금액 = 실데이터 기반 시뮬레이션 (아래 가정 참조) · 확정치 아님</span>
       </div>
-      <div class="tnote">근거 — 전체 호텔 거래액 內 크로스셀 비중이 <b>14.6%(25.01) → 23.3%(26.03)</b>로 상승 중: 크로스셀이 호텔 거래액 성장을 견인하는 국면 (상세 차트는 아래 '추이 비교' 섹션). 상반기 실적 712.1억 · 달성률 47.5% — 남은 <b>787.9억</b>을 하반기 성수기 + 신규 과제로 채우는 구조.</div>
+      <div class="tnote"><b>시뮬레이션 가정</b> — ① 성수기·기존 <b>+168억</b> = 25년 913억 × 관측 성장률 +18.4% (26년 상반기 실적 YoY: 601.2→712.1억) · ② 신규 과제 몫 <b>419억</b>(= 587 − 168)을 세그먼트 율 상향 잠재치(연환산: 호텔 +367억 · 티켓 +106억) 비율로 배분 · ③ 호텔 몫은 지역패스 : 시크릿몰 = <b>54 : 46</b>(일본·제주의 크로스셀 거래액 비중)으로 분할 → 시크릿몰 +149 · 지역패스 +176 · 티켓 +94 · 검산 168+149+176+94 = <b>+587억</b> ✓ · 과제 스킴 확정 시 금액 갱신. 근거 — 침투율(거래액 기준)이 14.6%→23.3%로 상승 중이라 크로스셀의 호텔 성장 견인력은 검증된 상태.</div>
     </section>
 
     <!-- 2) 크로스셀 현황 요약 -->
@@ -444,12 +465,11 @@
         <span><span class="sw" style="background:#6BA8E8"></span>국내 (국내선 구매자)</span>
         <span><span class="sw" style="background:var(--coral)"></span>해외 (국제선 구매자)</span>
       </div>
-      <div class="insight">
-        <div class="in-t">Insight (26년 1~6월)</div>
-        <ul>
-          <li>해외 크로스셀 비율(9.56%)이 국내(7.20%) 대비 <b>약 1.3배</b> → 해외 여행자의 <b>항공-호텔 결합 니즈가 강함</b></li>
-          <li>거래액(해외 2.8배)·객단가(해외 2.5배) 모두 해외 우위 → <b>해외가 매출 기여의 핵심</b></li>
-        </ul>
+      <div class="dt" style="margin-top:26px">핵심 논지 <span class="dtag">3가지</span></div>
+      <div class="keyp">
+        <div class="kp"><span class="kp-no">1</span><div class="kp-t"><b>해외에 여지가 크다</b> — 해외가 국내보다 크로스셀율 <em>1.3배</em> · 거래액 <em>2.8배</em> · 객단가 <em>2.5배</em></div></div>
+        <div class="kp"><span class="kp-no">2</span><div class="kp-t"><b>국가는 일본부터</b> — 모수·거래액 1위 일본 <em>(33.7만 명 · 10.3% · 월 40.3억)</em> · 비율 1위 베트남 <em>(11.9%)</em> · 중국은 비율 최저(5.3%)라 후순위</div></div>
+        <div class="kp"><span class="kp-no">3</span><div class="kp-t"><b>골든타임에 집중</b> — 크로스셀의 <em>84%</em>가 구매 후 30일 안에 발생 (당일 30%) → 예약 직후 접점이 핵심</div></div>
       </div>
       <div class="tnote">⚠ 26년 4~6월에 항공권을 산 사람들은 아직 여행 전이라 호텔 예약이 계속 추가되는 중 → 26년 수치는 <b>앞으로 더 올라갈 수 있는 잠정치</b>. 25년 확정치 기준 비율은 연중 8.0~9.2%.</div>
     </section>
@@ -518,7 +538,7 @@
           <div class="trend" id="t-cmp"></div>
         </div>
         <div>
-          <div class="dt">전체 호텔 거래액 內 크로스셀 비중 <span class="dtag">XS GMV ÷ Total GMV</span></div>
+          <div class="dt">전체 호텔 거래액 內 크로스셀 비중 = 침투율 <span class="dtag">XS GMV ÷ Total GMV</span></div>
           <div class="trend" id="t-share"></div>
         </div>
       </div>
